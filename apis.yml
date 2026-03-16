@@ -1,0 +1,35 @@
+aid: apache-oozie
+name: Apache Oozie
+description: >-
+  Apache Oozie is a workflow scheduler system to manage Apache Hadoop jobs. It allows users to define workflows as directed acyclic graphs of actions and supports coordination of recurring workflows based on time and data availability.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Workflow
+  - Scheduling
+  - Hadoop
+  - Big Data
+  - Orchestration
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-oozie:apache-oozie-rest-api
+    name: Apache Oozie REST API
+    description: >-
+      The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs, along with a Java client API and SLA management capabilities.
+    humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+    tags:
+      - REST
+      - Workflow
+      - Hadoop
+    properties:
+      - type: Documentation
+        url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
