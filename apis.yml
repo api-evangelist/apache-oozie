@@ -7,11 +7,11 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Workflow
-  - Scheduling
-  - Hadoop
   - Big Data
+  - Hadoop
   - Orchestration
+  - Scheduling
+  - Workflow
 created: '2026-03-16'
 modified: '2026-03-16'
 url: >-
@@ -24,9 +24,9 @@ apis:
       The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs, along with a Java client API and SLA management capabilities.
     humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
     tags:
+      - Hadoop
       - REST
       - Workflow
-      - Hadoop
     properties:
       - type: Documentation
         url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
