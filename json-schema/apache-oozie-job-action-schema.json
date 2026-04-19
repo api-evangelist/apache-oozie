@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-action-schema.json",
+  "title": "JobAction",
+  "description": "A single action within a workflow job.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Action identifier.",
+      "example": "0000001-200101120000000-oozie-admin-W@action1"
+    },
+    "name": {
+      "type": "string",
+      "description": "Action name as defined in the workflow.",
+      "example": "my-map-reduce"
+    },
+    "type": {
+      "type": "string",
+      "description": "Action type (map-reduce, pig, hive, etc.).",
+      "example": "map-reduce"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current action status.",
+      "example": "OK"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Action start timestamp.",
+      "example": "2021-01-01T12:00:00.000Z"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Action end timestamp.",
+      "example": "2021-01-01T12:05:00.000Z"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Error code if the action failed.",
+      "example": null
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message if the action failed.",
+      "example": null
+    }
+  }
+}

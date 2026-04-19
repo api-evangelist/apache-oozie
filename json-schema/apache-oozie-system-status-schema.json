@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json",
+  "title": "SystemStatus",
+  "description": "Oozie system mode status.",
+  "type": "object",
+  "properties": {
+    "systemMode": {
+      "type": "string",
+      "description": "Current system mode.",
+      "enum": [
+        "NORMAL",
+        "NOWEBSERVICE",
+        "SAFEMODE"
+      ],
+      "example": "NORMAL"
+    }
+  }
+}

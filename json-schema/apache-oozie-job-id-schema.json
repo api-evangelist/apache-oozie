@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json",
+  "title": "JobId",
+  "description": "Job submission response containing the assigned job ID.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The Oozie job identifier assigned to the submitted job.",
+      "example": "0000001-200101120000000-oozie-admin-W"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

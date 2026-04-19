@@ -1,0 +1,346 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Apache Oozie
+  description: Unified vocabulary mapping the operational (OpenAPI) and capability (Naftiko) dimensions of the Apache Oozie REST API for Hadoop workflow orchestration.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - name: Apache Oozie REST API
+      namespace: oozie
+      version: "5.2.1"
+      baseUrl: http://localhost:11000/oozie
+      status: active
+      description: REST API for managing workflow, coordinator, and bundle jobs on Apache Hadoop.
+
+  resources:
+    - name: admin
+      description: System administration including status, configuration, metrics, and server management.
+      apis:
+        - oozie
+      actions:
+        - get-status
+        - set-status
+        - get-configuration
+        - get-metrics
+        - get-build-version
+        - get-available-servers
+
+    - name: jobs
+      description: Submission and bulk management of workflow, coordinator, and bundle jobs.
+      apis:
+        - oozie
+      actions:
+        - submit
+        - list
+        - bulk-action
+
+    - name: job
+      description: Single job lifecycle management including start, suspend, resume, kill, and rerun.
+      apis:
+        - oozie
+      actions:
+        - get-info
+        - manage
+        - get-log
+        - get-definition
+        - get-graph
+
+    - name: validation
+      description: XML definition validation for workflows, coordinators, and bundles.
+      apis:
+        - oozie
+      actions:
+        - validate
+
+  actions:
+    - name: submit
+      description: Submit a new job for execution.
+      httpMethod: POST
+      pattern: write
+
+    - name: list
+      description: List jobs matching filter criteria.
+      httpMethod: GET
+      pattern: read
+
+    - name: get-info
+      description: Retrieve detailed job information.
+      httpMethod: GET
+      pattern: read
+
+    - name: get-log
+      description: Retrieve job execution logs.
+      httpMethod: GET
+      pattern: read
+
+    - name: get-definition
+      description: Retrieve the XML job definition.
+      httpMethod: GET
+      pattern: read
+
+    - name: get-graph
+      description: Retrieve a DAG visualization of the workflow.
+      httpMethod: GET
+      pattern: read
+
+    - name: manage
+      description: Apply a lifecycle action to a job (start, suspend, resume, kill, rerun).
+      httpMethod: PUT
+      pattern: write
+
+    - name: bulk-action
+      description: Apply an action to multiple jobs matching filter criteria.
+      httpMethod: PUT
+      pattern: write
+
+    - name: validate
+      description: Validate an XML workflow, coordinator, or bundle definition.
+      httpMethod: POST
+      pattern: read
+
+    - name: get-status
+      description: Get system mode and status.
+      httpMethod: GET
+      pattern: read
+
+    - name: set-status
+      description: Change system mode.
+      httpMethod: PUT
+      pattern: write
+
+    - name: get-configuration
+      description: Get system configuration properties.
+      httpMethod: GET
+      pattern: read
+
+    - name: get-metrics
+      description: Get system performance metrics.
+      httpMethod: GET
+      pattern: read
+
+    - name: get-available-servers
+      description: List available Oozie servers in a HA setup.
+      httpMethod: GET
+      pattern: read
+
+  schemas:
+    jobs:
+      - name: JobId
+        description: Job submission response containing the assigned job identifier.
+      - name: JobInfo
+        description: Full job information including status, actions, timestamps, and metadata.
+      - name: JobList
+        description: Paginated list of workflow, coordinator, and bundle jobs.
+      - name: JobAction
+        description: A single action within a workflow job with status and timestamps.
+
+    system:
+      - name: SystemStatus
+        description: Current Oozie system mode (NORMAL, SAFEMODE, NOWEBSERVICE).
+      - name: BuildVersion
+        description: Oozie server build version information.
+      - name: SystemMetrics
+        description: Performance and operational metrics including gauges, counters, and timers.
+
+    validation:
+      - name: ValidationResult
+        description: Result of XML definition validation indicating valid or invalid status.
+
+  parameters:
+    identifiers:
+      - name: job-id
+        description: Oozie job identifier (workflow, coordinator, bundle, or action ID).
+        type: string
+
+    filters:
+      - name: filter
+        description: Job filter criteria as semicolon-delimited key=value pairs (user, status, name, etc.).
+        type: string
+      - name: jobtype
+        description: Job type filter (wf, coordinator, bundle).
+        type: string
+
+    pagination:
+      - name: offset
+        description: Pagination offset, 1-based.
+        type: integer
+      - name: len
+        description: Maximum number of results to return.
+        type: integer
+
+    display:
+      - name: show
+        description: Response content type (info, definition, log, graph, status, errorlog, auditlog).
+        type: string
+      - name: timezone
+        description: Timezone for date formatting in responses.
+        type: string
+
+    actions:
+      - name: action
+        description: Job management action (start, suspend, resume, kill, rerun, coord-rerun, change).
+        type: string
+
+  enums:
+    systemModes:
+      - NORMAL
+      - NOWEBSERVICE
+      - SAFEMODE
+
+    jobTypes:
+      - wf
+      - coordinator
+      - bundle
+
+    jobStatuses:
+      - PREP
+      - RUNNING
+      - SUCCEEDED
+      - KILLED
+      - FAILED
+      - SUSPENDED
+      - PAUSED
+      - DONEWITHERROR
+
+    showOptions:
+      - info
+      - definition
+      - log
+      - errorlog
+      - auditlog
+      - graph
+      - status
+      - jmstopic
+      - retries
+      - allruns
+      - missing-dependencies
+
+    managementActions:
+      - start
+      - suspend
+      - resume
+      - kill
+      - dryrun
+      - rerun
+      - coord-rerun
+      - bundle-rerun
+      - change
+      - ignore
+      - sla-change
+      - sla-disable
+      - sla-enable
+
+    jobTypeProxy:
+      - mapreduce
+      - pig
+      - hive
+      - sqoop
+
+  authentication:
+    schemes:
+      - name: kerberosAuth
+        type: http
+        description: Kerberos/SPNEGO authentication when Hadoop security is enabled.
+      - name: noAuth
+        type: none
+        description: No authentication required in non-secure Hadoop deployments.
+
+capability:
+  workflows:
+    - name: Apache Oozie Workflow Orchestration
+      file: capabilities/apache-oozie-workflow-orchestration.yaml
+      description: End-to-end workflow orchestration for Hadoop data pipelines covering job submission, monitoring, and lifecycle management.
+      apisUsed:
+        - Apache Oozie REST API
+      toolCount: 12
+      personas:
+        - Data Engineer
+        - Hadoop Pipeline Operator
+      domains:
+        - Workflow Orchestration
+        - Data Engineering
+
+  personas:
+    - id: data-engineer
+      name: Data Engineer
+      description: Engineers building and managing Hadoop data processing pipelines using Oozie workflows.
+      workflows:
+        - Apache Oozie Workflow Orchestration
+
+    - id: hadoop-pipeline-operator
+      name: Hadoop Pipeline Operator
+      description: Operators monitoring and managing Oozie job execution in production Hadoop environments.
+      workflows:
+        - Apache Oozie Workflow Orchestration
+
+  domains:
+    - name: Workflow Orchestration
+      description: Scheduling and executing directed acyclic graphs of Hadoop processing actions.
+      resources:
+        - jobs
+        - job
+
+    - name: Data Engineering
+      description: Building reliable data pipelines for batch processing of large datasets on Hadoop.
+      resources:
+        - jobs
+        - job
+        - validation
+
+  namespaces:
+    - type: consumed
+      name: oozie
+      baseUri: http://localhost:11000/oozie
+
+    - type: rest-exposed
+      name: oozie-orchestration-api
+      port: 8080
+
+    - type: mcp-exposed
+      name: oozie-orchestration-mcp
+      port: 9090
+
+  binds:
+    - name: OOZIE_URL
+      description: Base URL for the Apache Oozie server.
+      workflows:
+        - Apache Oozie Workflow Orchestration
+
+crossReference:
+  - resource: jobs
+    operations:
+      - submit-workflow-job
+      - list-jobs
+      - bulk-kill-jobs
+    workflows:
+      - Apache Oozie Workflow Orchestration
+    personas:
+      - Data Engineer
+      - Hadoop Pipeline Operator
+
+  - resource: job
+    operations:
+      - get-job-info
+      - get-job-log
+      - start-job
+      - suspend-job
+      - resume-job
+      - kill-job
+      - rerun-job
+    workflows:
+      - Apache Oozie Workflow Orchestration
+    personas:
+      - Data Engineer
+      - Hadoop Pipeline Operator
+
+  - resource: admin
+    operations:
+      - get-system-status
+      - get-system-config
+    workflows:
+      - Apache Oozie Workflow Orchestration
+    personas:
+      - Hadoop Pipeline Operator

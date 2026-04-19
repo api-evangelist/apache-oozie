@@ -1,0 +1,130 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oozie": "https://oozie.apache.org/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "BuildVersion": "oozie:BuildVersion",
+    "JobAction": "oozie:JobAction",
+    "JobId": "oozie:JobId",
+    "JobInfo": "oozie:JobInfo",
+    "JobList": "oozie:JobList",
+    "SystemMetrics": "oozie:SystemMetrics",
+    "SystemStatus": "oozie:SystemStatus",
+    "ValidationResult": "oozie:ValidationResult",
+    "actions": {
+      "@id": "oozie:actions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "appName": {
+      "@id": "oozie:appName",
+      "@type": "xsd:string"
+    },
+    "appPath": {
+      "@id": "oozie:appPath",
+      "@type": "xsd:string"
+    },
+    "buildVersion": {
+      "@id": "oozie:buildVersion",
+      "@type": "xsd:string"
+    },
+    "bundlejobs": {
+      "@id": "oozie:bundlejobs",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "coordinatorjobs": {
+      "@id": "oozie:coordinatorjobs",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "counters": {
+      "@id": "oozie:counters",
+      "@type": "@id"
+    },
+    "createdTime": {
+      "@id": "oozie:createdTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "oozie:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "errorCode": {
+      "@id": "oozie:errorCode",
+      "@type": "xsd:string"
+    },
+    "errorMessage": {
+      "@id": "oozie:errorMessage",
+      "@type": "xsd:string"
+    },
+    "gauges": {
+      "@id": "oozie:gauges",
+      "@type": "@id"
+    },
+    "group": {
+      "@id": "oozie:group",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "oozie:id",
+      "@type": "xsd:string"
+    },
+    "lastModTime": {
+      "@id": "oozie:lastModTime",
+      "@type": "xsd:dateTime"
+    },
+    "len": {
+      "@id": "oozie:len",
+      "@type": "xsd:integer"
+    },
+    "name": "schema:name",
+    "offset": {
+      "@id": "oozie:offset",
+      "@type": "xsd:integer"
+    },
+    "run": {
+      "@id": "oozie:run",
+      "@type": "xsd:integer"
+    },
+    "startTime": {
+      "@id": "oozie:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "oozie:status",
+      "@type": "xsd:string"
+    },
+    "systemMode": {
+      "@id": "oozie:systemMode",
+      "@type": "xsd:string"
+    },
+    "timers": {
+      "@id": "oozie:timers",
+      "@type": "@id"
+    },
+    "total": {
+      "@id": "oozie:total",
+      "@type": "xsd:integer"
+    },
+    "type": {
+      "@id": "oozie:type",
+      "@type": "xsd:string"
+    },
+    "user": {
+      "@id": "oozie:user",
+      "@type": "xsd:string"
+    },
+    "validate": {
+      "@id": "oozie:validate",
+      "@type": "@id"
+    },
+    "workflows": {
+      "@id": "oozie:workflows",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

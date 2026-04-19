@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-build-version-schema.json",
+  "title": "BuildVersion",
+  "description": "Oozie server build version information.",
+  "type": "object",
+  "properties": {
+    "buildVersion": {
+      "type": "string",
+      "description": "The Oozie build version string.",
+      "example": "5.2.1"
+    }
+  }
+}

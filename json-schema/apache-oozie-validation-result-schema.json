@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-validation-result-schema.json",
+  "title": "ValidationResult",
+  "description": "Result of XML definition validation.",
+  "type": "object",
+  "properties": {
+    "validate": {
+      "type": "object",
+      "description": "Validation outcome.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Validation status.",
+          "example": "valid"
+        }
+      }
+    }
+  }
+}

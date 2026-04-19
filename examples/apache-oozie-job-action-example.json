@@ -1,0 +1,8 @@
+{
+  "id": "0000001-200101120000000-oozie-admin-W@action1",
+  "name": "my-map-reduce",
+  "type": "map-reduce",
+  "status": "OK",
+  "startTime": "2021-01-01T12:00:00.000Z",
+  "endTime": "2021-01-01T12:05:00.000Z"
+}

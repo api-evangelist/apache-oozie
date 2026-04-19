@@ -1,0 +1,59 @@
+{
+  "offset": 1,
+  "len": 50,
+  "total": 100,
+  "workflows": [
+    {
+      "id": "0000001-200101120000000-oozie-admin-W",
+      "appName": "my-workflow",
+      "appPath": "hdfs://localhost:8020/user/admin/workflow",
+      "status": "RUNNING",
+      "user": "admin",
+      "group": "users",
+      "startTime": "2021-01-01T12:00:00.000Z",
+      "endTime": "2021-01-01T12:00:00.000Z",
+      "lastModTime": "2021-01-01T12:00:00.000Z",
+      "createdTime": "2021-01-01T12:00:00.000Z",
+      "run": 0,
+      "actions": [
+        {}
+      ]
+    }
+  ],
+  "coordinatorjobs": [
+    {
+      "id": "0000001-200101120000000-oozie-admin-W",
+      "appName": "my-workflow",
+      "appPath": "hdfs://localhost:8020/user/admin/workflow",
+      "status": "RUNNING",
+      "user": "admin",
+      "group": "users",
+      "startTime": "2021-01-01T12:00:00.000Z",
+      "endTime": "2021-01-01T12:00:00.000Z",
+      "lastModTime": "2021-01-01T12:00:00.000Z",
+      "createdTime": "2021-01-01T12:00:00.000Z",
+      "run": 0,
+      "actions": [
+        {}
+      ]
+    }
+  ],
+  "bundlejobs": [
+    {
+      "id": "0000001-200101120000000-oozie-admin-W",
+      "appName": "my-workflow",
+      "appPath": "hdfs://localhost:8020/user/admin/workflow",
+      "status": "RUNNING",
+      "user": "admin",
+      "group": "users",
+      "startTime": "2021-01-01T12:00:00.000Z",
+      "endTime": "2021-01-01T12:00:00.000Z",
+      "lastModTime": "2021-01-01T12:00:00.000Z",
+      "createdTime": "2021-01-01T12:00:00.000Z",
+      "run": 0,
+      "actions": [
+        {}
+      ]
+    }
+  ]
+}

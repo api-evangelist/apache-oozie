@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json",
+  "title": "JobInfo",
+  "description": "Full information about a workflow, coordinator, or bundle job.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Job identifier.",
+      "example": "0000001-200101120000000-oozie-admin-W"
+    },
+    "appName": {
+      "type": "string",
+      "description": "Application name from the workflow definition.",
+      "example": "my-workflow"
+    },
+    "appPath": {
+      "type": "string",
+      "description": "HDFS path to the workflow application.",
+      "example": "hdfs://localhost:8020/user/admin/workflow"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current job status.",
+      "example": "RUNNING"
+    },
+    "user": {
+      "type": "string",
+      "description": "User who submitted the job.",
+      "example": "admin"
+    },
+    "group": {
+      "type": "string",
+      "description": "User group for the job.",
+      "example": "users"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Job start timestamp.",
+      "example": "2021-01-01T12:00:00.000Z"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Job end timestamp (null if still running)."
+    },
+    "lastModTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp."
+    },
+    "createdTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Job creation timestamp."
+    },
+    "run": {
+      "type": "integer",
+      "description": "Run number for rerun tracking.",
+      "example": 0
+    },
+    "actions": {
+      "type": "array",
+      "description": "List of actions within the job (workflow jobs only).",
+      "items": {
+        "type": "object",
+        "description": "A single action within a workflow job.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Action identifier.",
+            "example": "0000001-200101120000000-oozie-admin-W@action1"
+          },
+          "name": {
+            "type": "string",
+            "description": "Action name as defined in the workflow.",
+            "example": "my-map-reduce"
+          },
+          "type": {
+            "type": "string",
+            "description": "Action type (map-reduce, pig, hive, etc.).",
+            "example": "map-reduce"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current action status.",
+            "example": "OK"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Action start timestamp.",
+            "example": "2021-01-01T12:00:00.000Z"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Action end timestamp.",
+            "example": "2021-01-01T12:05:00.000Z"
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "Error code if the action failed.",
+            "example": null
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message if the action failed.",
+            "example": null
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-structure/apache-oozie-validation-result-structure.json",
+  "name": "ValidationResult",
+  "description": "Result of XML definition validation.",
+  "type": "object",
+  "properties": {
+    "validate": {
+      "type": "object",
+      "description": "Validation outcome.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Validation status.",
+          "example": "valid"
+        }
+      }
+    }
+  }
+}
