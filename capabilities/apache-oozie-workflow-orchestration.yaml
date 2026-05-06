@@ -1,275 +1,400 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
   label: Apache Oozie Workflow Orchestration
-  description: Workflow capability for orchestrating Hadoop data processing pipelines using Apache Oozie. Covers workflow, coordinator, and bundle job lifecycle management for data engineers and Hadoop pipeline operators running scheduled and event-driven data processing.
+  description: Workflow capability for orchestrating Hadoop data processing pipelines using Apache Oozie. Covers workflow,
+    coordinator, and bundle job lifecycle management for data engineers and Hadoop pipeline operators running scheduled and
+    event-driven data processing.
   tags:
-    - Apache Oozie
-    - Hadoop
-    - Workflow Orchestration
-    - Data Engineering
-    - Pipeline Management
-  created: "2026-04-19"
-  modified: "2026-04-19"
-
+  - Apache Oozie
+  - Hadoop
+  - Workflow Orchestration
+  - Data Engineering
+  - Pipeline Management
+  created: '2026-04-19'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      OOZIE_URL: OOZIE_URL
-
+- namespace: env
+  keys:
+    OOZIE_URL: OOZIE_URL
 capability:
   consumes:
-    - import: oozie
-      location: ./shared/apache-oozie.yaml
-
+  - type: http
+    namespace: oozie
+    baseUri: http://localhost:11000/oozie
+    description: Apache Oozie REST API for managing Hadoop workflow, coordinator, and bundle jobs.
+    resources:
+    - name: admin
+      path: /v1/admin
+      description: System administration and monitoring.
+      operations:
+      - name: get-status
+        method: GET
+        description: Get current Oozie system mode.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-configuration
+        method: GET
+        description: Get Oozie system configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-build-version
+        method: GET
+        description: Get Oozie build version information.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs
+      path: /v1/jobs
+      description: Job submission and bulk management.
+      operations:
+      - name: submit-job
+        method: POST
+        description: Submit a workflow, coordinator, or bundle job.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: xml
+          data: <configuration></configuration>
+      - name: get-jobs
+        method: GET
+        description: List jobs with optional filters and pagination.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          required: false
+          description: Filter criteria as key=value pairs.
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Pagination offset.
+        - name: len
+          in: query
+          type: integer
+          required: false
+          description: Maximum jobs to return.
+        - name: jobtype
+          in: query
+          type: string
+          required: false
+          description: Filter by job type (wf, coordinator, bundle).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bulk-job-action
+        method: PUT
+        description: Apply an action (kill, suspend, resume) to multiple matching jobs.
+        inputParameters:
+        - name: action
+          in: query
+          type: string
+          required: true
+          description: Action to apply (kill, suspend, resume).
+        - name: filter
+          in: query
+          type: string
+          required: false
+          description: Filter criteria for selecting jobs.
+        - name: jobtype
+          in: query
+          type: string
+          required: false
+          description: Job type to target.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: job
+      path: /v1/job
+      description: Single job lifecycle management.
+      operations:
+      - name: get-job-info
+        method: GET
+        description: Get information, definition, or logs for a specific job.
+        inputParameters:
+        - name: job-id
+          in: path
+          type: string
+          required: true
+          description: The Oozie job identifier.
+        - name: show
+          in: query
+          type: string
+          required: false
+          description: Response type (info, definition, log, graph).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: manage-job
+        method: PUT
+        description: Apply a management action (start, suspend, resume, kill, rerun) to a job.
+        inputParameters:
+        - name: job-id
+          in: path
+          type: string
+          required: true
+          description: The Oozie job identifier.
+        - name: action
+          in: query
+          type: string
+          required: true
+          description: Action to apply to the job.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: oozie-orchestration-api
-      description: Unified REST API for Apache Oozie Hadoop workflow orchestration.
-      resources:
-        - path: /v1/admin/status
-          name: admin-status
-          description: System status and administration.
-          operations:
-            - method: GET
-              name: get-status
-              description: Get Oozie system mode (NORMAL, SAFEMODE, NOWEBSERVICE).
-              call: "oozie.get-status"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/admin/configuration
-          name: admin-config
-          description: System configuration access.
-          operations:
-            - method: GET
-              name: get-configuration
-              description: Get Oozie system configuration properties.
-              call: "oozie.get-configuration"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/jobs
-          name: jobs
-          description: Job submission and bulk management.
-          operations:
-            - method: POST
-              name: submit-job
-              description: Submit a workflow, coordinator, or bundle job.
-              call: "oozie.submit-job"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: list-jobs
-              description: List jobs with filters and pagination.
-              call: "oozie.get-jobs"
-              with:
-                filter: "rest.filter"
-                offset: "rest.offset"
-                len: "rest.len"
-                jobtype: "rest.jobtype"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: bulk-action
-              description: Apply a bulk action to multiple matching jobs.
-              call: "oozie.bulk-job-action"
-              with:
-                action: "rest.action"
-                filter: "rest.filter"
-                jobtype: "rest.jobtype"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/jobs/{jobId}
-          name: job-detail
-          description: Single job management.
-          operations:
-            - method: GET
-              name: get-job
-              description: Get job information, definition, logs, or DAG.
-              call: "oozie.get-job-info"
-              with:
-                job-id: "rest.jobId"
-                show: "rest.show"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: manage-job
-              description: Apply a lifecycle action to a job.
-              call: "oozie.manage-job"
-              with:
-                job-id: "rest.jobId"
-                action: "rest.action"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: oozie-orchestration-mcp
-      transport: http
-      description: MCP server for AI-assisted Apache Oozie Hadoop workflow orchestration.
-      tools:
-        - name: get-system-status
-          description: Get the current Apache Oozie system mode. Returns NORMAL, SAFEMODE, or NOWEBSERVICE.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "oozie.get-status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-system-config
-          description: Get Apache Oozie system configuration properties for troubleshooting and verification.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "oozie.get-configuration"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: submit-workflow-job
-          description: Submit an Oozie workflow job to execute a Hadoop data pipeline. Pass an XML configuration with oozie.wf.application.path pointing to the HDFS workflow directory.
-          hints:
-            readOnly: false
-            openWorld: false
-          call: "oozie.submit-job"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-jobs
-          description: List Oozie jobs with optional filtering by user, status, job type (wf/coordinator/bundle), and pagination.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "oozie.get-jobs"
-          with:
-            filter: "tools.filter"
-            jobtype: "tools.jobtype"
-            offset: "tools.offset"
-            len: "tools.len"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-job-info
-          description: Get detailed information about a specific Oozie job including status, actions, and timeline.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "oozie.get-job-info"
-          with:
-            job-id: "tools.jobId"
-            show: "tools.show"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-job-log
-          description: Retrieve execution logs for a specific Oozie job for debugging and monitoring.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "oozie.get-job-info"
-          with:
-            job-id: "tools.jobId"
-            show: "log"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: start-job
-          description: Start a submitted but not yet running Oozie job.
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "oozie.manage-job"
-          with:
-            job-id: "tools.jobId"
-            action: "start"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: suspend-job
-          description: Suspend a running Oozie job, pausing execution until resumed.
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "oozie.manage-job"
-          with:
-            job-id: "tools.jobId"
-            action: "suspend"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: resume-job
-          description: Resume a suspended Oozie job.
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "oozie.manage-job"
-          with:
-            job-id: "tools.jobId"
-            action: "resume"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: kill-job
-          description: Terminate an Oozie job immediately.
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "oozie.manage-job"
-          with:
-            job-id: "tools.jobId"
-            action: "kill"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: rerun-job
-          description: Rerun a completed or failed Oozie workflow job, optionally skipping specific nodes.
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "oozie.manage-job"
-          with:
-            job-id: "tools.jobId"
-            action: "rerun"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: bulk-kill-jobs
-          description: Kill multiple Oozie jobs matching specified filter criteria.
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "oozie.bulk-job-action"
-          with:
-            action: "kill"
-            filter: "tools.filter"
-            jobtype: "tools.jobtype"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: oozie-orchestration-api
+    description: Unified REST API for Apache Oozie Hadoop workflow orchestration.
+    resources:
+    - path: /v1/admin/status
+      name: admin-status
+      description: System status and administration.
+      operations:
+      - method: GET
+        name: get-status
+        description: Get Oozie system mode (NORMAL, SAFEMODE, NOWEBSERVICE).
+        call: oozie.get-status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/configuration
+      name: admin-config
+      description: System configuration access.
+      operations:
+      - method: GET
+        name: get-configuration
+        description: Get Oozie system configuration properties.
+        call: oozie.get-configuration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs
+      name: jobs
+      description: Job submission and bulk management.
+      operations:
+      - method: POST
+        name: submit-job
+        description: Submit a workflow, coordinator, or bundle job.
+        call: oozie.submit-job
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: list-jobs
+        description: List jobs with filters and pagination.
+        call: oozie.get-jobs
+        with:
+          filter: rest.filter
+          offset: rest.offset
+          len: rest.len
+          jobtype: rest.jobtype
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: bulk-action
+        description: Apply a bulk action to multiple matching jobs.
+        call: oozie.bulk-job-action
+        with:
+          action: rest.action
+          filter: rest.filter
+          jobtype: rest.jobtype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs/{jobId}
+      name: job-detail
+      description: Single job management.
+      operations:
+      - method: GET
+        name: get-job
+        description: Get job information, definition, logs, or DAG.
+        call: oozie.get-job-info
+        with:
+          job-id: rest.jobId
+          show: rest.show
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: manage-job
+        description: Apply a lifecycle action to a job.
+        call: oozie.manage-job
+        with:
+          job-id: rest.jobId
+          action: rest.action
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: oozie-orchestration-mcp
+    transport: http
+    description: MCP server for AI-assisted Apache Oozie Hadoop workflow orchestration.
+    tools:
+    - name: get-system-status
+      description: Get the current Apache Oozie system mode. Returns NORMAL, SAFEMODE, or NOWEBSERVICE.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: oozie.get-status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-system-config
+      description: Get Apache Oozie system configuration properties for troubleshooting and verification.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: oozie.get-configuration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-workflow-job
+      description: Submit an Oozie workflow job to execute a Hadoop data pipeline. Pass an XML configuration with oozie.wf.application.path
+        pointing to the HDFS workflow directory.
+      hints:
+        readOnly: false
+        openWorld: false
+      call: oozie.submit-job
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-jobs
+      description: List Oozie jobs with optional filtering by user, status, job type (wf/coordinator/bundle), and pagination.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: oozie.get-jobs
+      with:
+        filter: tools.filter
+        jobtype: tools.jobtype
+        offset: tools.offset
+        len: tools.len
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-job-info
+      description: Get detailed information about a specific Oozie job including status, actions, and timeline.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: oozie.get-job-info
+      with:
+        job-id: tools.jobId
+        show: tools.show
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-job-log
+      description: Retrieve execution logs for a specific Oozie job for debugging and monitoring.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: oozie.get-job-info
+      with:
+        job-id: tools.jobId
+        show: log
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-job
+      description: Start a submitted but not yet running Oozie job.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oozie.manage-job
+      with:
+        job-id: tools.jobId
+        action: start
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-job
+      description: Suspend a running Oozie job, pausing execution until resumed.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oozie.manage-job
+      with:
+        job-id: tools.jobId
+        action: suspend
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-job
+      description: Resume a suspended Oozie job.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oozie.manage-job
+      with:
+        job-id: tools.jobId
+        action: resume
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: kill-job
+      description: Terminate an Oozie job immediately.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: oozie.manage-job
+      with:
+        job-id: tools.jobId
+        action: kill
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rerun-job
+      description: Rerun a completed or failed Oozie workflow job, optionally skipping specific nodes.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oozie.manage-job
+      with:
+        job-id: tools.jobId
+        action: rerun
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-kill-jobs
+      description: Kill multiple Oozie jobs matching specified filter criteria.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: oozie.bulk-job-action
+      with:
+        action: kill
+        filter: tools.filter
+        jobtype: tools.jobtype
+      outputParameters:
+      - type: object
+        mapping: $.
