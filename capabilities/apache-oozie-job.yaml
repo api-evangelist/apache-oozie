@@ -1,0 +1,303 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Oozie REST API — Job
+  description: 'Apache Oozie REST API — Job. 4 operations. Lead operation: Apache Oozie Get Job Info. Self-contained Naftiko
+    capability covering one Apache Oozie business surface.'
+  tags:
+  - Apache Oozie
+  - Job
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OOZIE_API_KEY: APACHE_OOZIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: apache-oozie-job
+    baseUri: http://localhost:11000/oozie
+    description: Apache Oozie REST API — Job business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-job-job-id
+      path: /v1/job/{job-id}
+      operations:
+      - name: getjobinfo
+        method: GET
+        description: Apache Oozie Get Job Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: show
+          in: query
+          type: string
+          description: Type of information to return.
+        - name: timezone
+          in: query
+          type: string
+          description: Timezone for date formatting.
+        - name: offset
+          in: query
+          type: integer
+          description: Offset for action pagination within the job.
+        - name: len
+          in: query
+          type: integer
+          description: Number of actions to return.
+        - name: format
+          in: query
+          type: string
+          description: Graph format (only when show=graph).
+        - name: logfilter
+          in: query
+          type: string
+          description: Log filter (only when show=log) as semicolon-delimited key=value pairs.
+      - name: managejob
+        method: PUT
+        description: Apache Oozie Manage Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action
+          in: query
+          type: string
+          description: Action to apply to the job.
+          required: true
+        - name: value
+          in: query
+          type: string
+          description: Value parameter for change/sla-change/sla-disable/sla-enable actions.
+        - name: type
+          in: query
+          type: string
+          description: Rerun type (action or date) for coord-rerun action.
+        - name: scope
+          in: query
+          type: string
+          description: Scope of actions to rerun (e.g., 1-2 for action range, date range for date type).
+        - name: refresh
+          in: query
+          type: boolean
+          description: Whether to refresh coordinator configuration on rerun.
+        - name: nocleanup
+          in: query
+          type: boolean
+          description: Whether to skip cleanup of workflow output directories on rerun.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-job-job-id
+      path: /v2/job/{job-id}
+      operations:
+      - name: getjobinfov2
+        method: GET
+        description: Apache Oozie Get Job Info v2
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: show
+          in: query
+          type: string
+          description: Type of information to return.
+        - name: timezone
+          in: query
+          type: string
+          description: Timezone for date formatting.
+        - name: type
+          in: query
+          type: string
+          description: Filter type for allruns (action).
+        - name: action-list
+          in: query
+          type: string
+          description: Comma-separated action IDs for missing-dependencies or SLA operations.
+      - name: managejobv2
+        method: PUT
+        description: Apache Oozie Manage Job v2
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action
+          in: query
+          type: string
+          description: Action to apply to the job.
+          required: true
+        - name: type
+          in: query
+          type: string
+          description: Ignore type (action).
+        - name: scope
+          in: query
+          type: string
+          description: Scope of actions to ignore (e.g., 3-4).
+        - name: value
+          in: query
+          type: string
+          description: SLA change value as key=value pairs.
+        - name: action-list
+          in: query
+          type: string
+          description: Comma-separated action list for SLA enable/disable.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: apache-oozie-job-rest
+    port: 8080
+    description: REST adapter for Apache Oozie REST API — Job. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/job/{job-id}
+      name: v1-job-job-id
+      description: REST surface for v1-job-job-id.
+      operations:
+      - method: GET
+        name: getjobinfo
+        description: Apache Oozie Get Job Info
+        call: apache-oozie-job.getjobinfo
+        with:
+          show: rest.show
+          timezone: rest.timezone
+          offset: rest.offset
+          len: rest.len
+          format: rest.format
+          logfilter: rest.logfilter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: managejob
+        description: Apache Oozie Manage Job
+        call: apache-oozie-job.managejob
+        with:
+          action: rest.action
+          value: rest.value
+          type: rest.type
+          scope: rest.scope
+          refresh: rest.refresh
+          nocleanup: rest.nocleanup
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/job/{job-id}
+      name: v2-job-job-id
+      description: REST surface for v2-job-job-id.
+      operations:
+      - method: GET
+        name: getjobinfov2
+        description: Apache Oozie Get Job Info v2
+        call: apache-oozie-job.getjobinfov2
+        with:
+          show: rest.show
+          timezone: rest.timezone
+          type: rest.type
+          action-list: rest.action-list
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: managejobv2
+        description: Apache Oozie Manage Job v2
+        call: apache-oozie-job.managejobv2
+        with:
+          action: rest.action
+          type: rest.type
+          scope: rest.scope
+          value: rest.value
+          action-list: rest.action-list
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: apache-oozie-job-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Oozie REST API — Job. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apache-oozie-get-job-info
+      description: Apache Oozie Get Job Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-job.getjobinfo
+      with:
+        show: tools.show
+        timezone: tools.timezone
+        offset: tools.offset
+        len: tools.len
+        format: tools.format
+        logfilter: tools.logfilter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-manage-job
+      description: Apache Oozie Manage Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: apache-oozie-job.managejob
+      with:
+        action: tools.action
+        value: tools.value
+        type: tools.type
+        scope: tools.scope
+        refresh: tools.refresh
+        nocleanup: tools.nocleanup
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-get-job-info-2
+      description: Apache Oozie Get Job Info v2
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-job.getjobinfov2
+      with:
+        show: tools.show
+        timezone: tools.timezone
+        type: tools.type
+        action-list: tools.action-list
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-manage-job-v2
+      description: Apache Oozie Manage Job v2
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: apache-oozie-job.managejobv2
+      with:
+        action: tools.action
+        type: tools.type
+        scope: tools.scope
+        value: tools.value
+        action-list: tools.action-list
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

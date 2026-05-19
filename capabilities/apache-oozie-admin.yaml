@@ -1,0 +1,262 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Oozie REST API — Admin
+  description: 'Apache Oozie REST API — Admin. 7 operations. Lead operation: Apache Oozie Get Build Version. Self-contained
+    Naftiko capability covering one Apache Oozie business surface.'
+  tags:
+  - Apache Oozie
+  - Admin
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OOZIE_API_KEY: APACHE_OOZIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: apache-oozie-admin
+    baseUri: http://localhost:11000/oozie
+    description: Apache Oozie REST API — Admin business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-admin-build-version
+      path: /v1/admin/build-version
+      operations:
+      - name: getbuildversion
+        method: GET
+        description: Apache Oozie Get Build Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-admin-configuration
+      path: /v1/admin/configuration
+      operations:
+      - name: getconfiguration
+        method: GET
+        description: Apache Oozie Get System Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-admin-os-env
+      path: /v1/admin/os-env
+      operations:
+      - name: getosenv
+        method: GET
+        description: Apache Oozie Get OS Environment Variables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-admin-status
+      path: /v1/admin/status
+      operations:
+      - name: getstatus
+        method: GET
+        description: Apache Oozie Get System Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setstatus
+        method: PUT
+        description: Apache Oozie Change System Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: systemmode
+          in: query
+          type: string
+          description: The new system mode to set.
+          required: true
+    - name: v2-admin-available-oozie-servers
+      path: /v2/admin/available-oozie-servers
+      operations:
+      - name: getavailableservers
+        method: GET
+        description: Apache Oozie List Available Servers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-admin-metrics
+      path: /v2/admin/metrics
+      operations:
+      - name: getmetrics
+        method: GET
+        description: Apache Oozie Get System Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: apache-oozie-admin-rest
+    port: 8080
+    description: REST adapter for Apache Oozie REST API — Admin. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/admin/build-version
+      name: v1-admin-build-version
+      description: REST surface for v1-admin-build-version.
+      operations:
+      - method: GET
+        name: getbuildversion
+        description: Apache Oozie Get Build Version
+        call: apache-oozie-admin.getbuildversion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/admin/configuration
+      name: v1-admin-configuration
+      description: REST surface for v1-admin-configuration.
+      operations:
+      - method: GET
+        name: getconfiguration
+        description: Apache Oozie Get System Configuration
+        call: apache-oozie-admin.getconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/admin/os-env
+      name: v1-admin-os-env
+      description: REST surface for v1-admin-os-env.
+      operations:
+      - method: GET
+        name: getosenv
+        description: Apache Oozie Get OS Environment Variables
+        call: apache-oozie-admin.getosenv
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/admin/status
+      name: v1-admin-status
+      description: REST surface for v1-admin-status.
+      operations:
+      - method: GET
+        name: getstatus
+        description: Apache Oozie Get System Status
+        call: apache-oozie-admin.getstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setstatus
+        description: Apache Oozie Change System Status
+        call: apache-oozie-admin.setstatus
+        with:
+          systemmode: rest.systemmode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/admin/available-oozie-servers
+      name: v2-admin-available-oozie-servers
+      description: REST surface for v2-admin-available-oozie-servers.
+      operations:
+      - method: GET
+        name: getavailableservers
+        description: Apache Oozie List Available Servers
+        call: apache-oozie-admin.getavailableservers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/admin/metrics
+      name: v2-admin-metrics
+      description: REST surface for v2-admin-metrics.
+      operations:
+      - method: GET
+        name: getmetrics
+        description: Apache Oozie Get System Metrics
+        call: apache-oozie-admin.getmetrics
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: apache-oozie-admin-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Oozie REST API — Admin. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apache-oozie-get-build-version
+      description: Apache Oozie Get Build Version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.getbuildversion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-get-system-configuration
+      description: Apache Oozie Get System Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.getconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-get-os-environment
+      description: Apache Oozie Get OS Environment Variables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.getosenv
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-get-system-status
+      description: Apache Oozie Get System Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.getstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-change-system-status
+      description: Apache Oozie Change System Status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.setstatus
+      with:
+        systemmode: tools.systemmode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-list-available-servers
+      description: Apache Oozie List Available Servers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.getavailableservers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-get-system-metrics
+      description: Apache Oozie Get System Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-admin.getmetrics
+      outputParameters:
+      - type: object
+        mapping: $.

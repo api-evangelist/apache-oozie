@@ -1,0 +1,261 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Oozie REST API — Jobs
+  description: 'Apache Oozie REST API — Jobs. 4 operations. Lead operation: Apache Oozie Submit a Job. Self-contained Naftiko
+    capability covering one Apache Oozie business surface.'
+  tags:
+  - Apache Oozie
+  - Jobs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_OOZIE_API_KEY: APACHE_OOZIE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: apache-oozie-jobs
+    baseUri: http://localhost:11000/oozie
+    description: Apache Oozie REST API — Jobs business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-jobs
+      path: /v1/jobs
+      operations:
+      - name: submitjob
+        method: POST
+        description: Apache Oozie Submit a Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action
+          in: query
+          type: string
+          description: Set to "start" to immediately start the submitted job.
+        - name: jobtype
+          in: query
+          type: string
+          description: Job type for proxy submissions without a workflow XML.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getjobs
+        method: GET
+        description: Apache Oozie List Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING).
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset, 1-based.
+        - name: len
+          in: query
+          type: integer
+          description: Maximum number of jobs to return.
+        - name: timezone
+          in: query
+          type: string
+          description: Timezone for date formatting in response.
+        - name: jobtype
+          in: query
+          type: string
+          description: Filter by job type (wf, coordinator, bundle).
+        - name: bulk
+          in: query
+          type: string
+          description: Bulk filter for coordinator action status queries.
+      - name: bulkjobaction
+        method: PUT
+        description: Apache Oozie Bulk Job Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action
+          in: query
+          type: string
+          description: Action to apply to matching jobs.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: Filter criteria for selecting target jobs.
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset.
+        - name: len
+          in: query
+          type: integer
+          description: Maximum number of jobs to affect.
+        - name: jobtype
+          in: query
+          type: string
+          description: Job type to filter by.
+    - name: v2-validate
+      path: /v2/validate
+      operations:
+      - name: validatejobxml
+        method: POST
+        description: Apache Oozie Validate Workflow XML
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: file
+          in: query
+          type: string
+          description: Local or HDFS path to the XML file to validate.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: apache-oozie-jobs-rest
+    port: 8080
+    description: REST adapter for Apache Oozie REST API — Jobs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/jobs
+      name: v1-jobs
+      description: REST surface for v1-jobs.
+      operations:
+      - method: POST
+        name: submitjob
+        description: Apache Oozie Submit a Job
+        call: apache-oozie-jobs.submitjob
+        with:
+          action: rest.action
+          jobtype: rest.jobtype
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getjobs
+        description: Apache Oozie List Jobs
+        call: apache-oozie-jobs.getjobs
+        with:
+          filter: rest.filter
+          offset: rest.offset
+          len: rest.len
+          timezone: rest.timezone
+          jobtype: rest.jobtype
+          bulk: rest.bulk
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: bulkjobaction
+        description: Apache Oozie Bulk Job Action
+        call: apache-oozie-jobs.bulkjobaction
+        with:
+          action: rest.action
+          filter: rest.filter
+          offset: rest.offset
+          len: rest.len
+          jobtype: rest.jobtype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/validate
+      name: v2-validate
+      description: REST surface for v2-validate.
+      operations:
+      - method: POST
+        name: validatejobxml
+        description: Apache Oozie Validate Workflow XML
+        call: apache-oozie-jobs.validatejobxml
+        with:
+          file: rest.file
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: apache-oozie-jobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Oozie REST API — Jobs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apache-oozie-submit-job
+      description: Apache Oozie Submit a Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apache-oozie-jobs.submitjob
+      with:
+        action: tools.action
+        jobtype: tools.jobtype
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-list-jobs
+      description: Apache Oozie List Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apache-oozie-jobs.getjobs
+      with:
+        filter: tools.filter
+        offset: tools.offset
+        len: tools.len
+        timezone: tools.timezone
+        jobtype: tools.jobtype
+        bulk: tools.bulk
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-bulk-job-action
+      description: Apache Oozie Bulk Job Action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: apache-oozie-jobs.bulkjobaction
+      with:
+        action: tools.action
+        filter: tools.filter
+        offset: tools.offset
+        len: tools.len
+        jobtype: tools.jobtype
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-oozie-validate-workflow-xml
+      description: Apache Oozie Validate Workflow XML
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: apache-oozie-jobs.validatejobxml
+      with:
+        file: tools.file
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
