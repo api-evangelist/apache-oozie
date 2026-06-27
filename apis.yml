@@ -53,13 +53,13 @@ apis:
   - type: JSONSchema
     url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
     title: System Status Schema
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/apache-oozie-admin.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/apache-oozie-job.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/apache-oozie-jobs.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/apache-oozie-versions.yaml
 common:
 - type: GitHubRepository
