@@ -62,6 +62,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/apache-oozie-versions.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/apache-oozie-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/apache-oozie-vulnerability-disclosure.yml
 - type: DomainSecurity
