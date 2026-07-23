@@ -1,0 +1,428 @@
+openapi: 3.0.3
+info:
+  title: Apache Oozie REST Admin Jobs API
+  description: The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).
+  version: 5.2.1
+  license:
+    name: Apache 2.0
+    identifier: Apache-2.0
+  contact:
+    name: Apache Oozie
+    url: https://oozie.apache.org
+servers:
+- url: http://localhost:11000/oozie
+  description: Apache Oozie server (default port 11000)
+tags:
+- name: Jobs
+  description: Job submission and bulk management
+paths:
+  /v1/jobs:
+    post:
+      tags:
+      - Jobs
+      summary: Apache Oozie Submit a Job
+      description: Submit a workflow, coordinator, or bundle job using an XML configuration payload. Use the action=start query parameter to submit and immediately start the job. Use jobtype for proxy submissions (mapreduce, pig, hive, sqoop) without a workflow XML.
+      operationId: submitJob
+      parameters:
+      - name: action
+        in: query
+        required: false
+        description: Set to "start" to immediately start the submitted job.
+        schema:
+          type: string
+          enum:
+          - start
+      - name: jobtype
+        in: query
+        required: false
+        description: Job type for proxy submissions without a workflow XML.
+        schema:
+          type: string
+          enum:
+          - mapreduce
+          - pig
+          - hive
+          - sqoop
+      requestBody:
+        required: true
+        description: XML job configuration properties.
+        content:
+          application/xml:
+            schema:
+              type: string
+            example: "<configuration>\n  <property>\n    <name>user.name</name>\n    <value>admin</value>\n  </property>\n  <property>\n    <name>oozie.wf.application.path</name>\n    <value>hdfs://localhost:8020/user/admin/workflow</value>\n  </property>\n</configuration>\n"
+      responses:
+        '201':
+          description: Job submitted successfully. Returns the job ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobId'
+              examples:
+                SubmitJob201Example:
+                  summary: Default submitJob 201 response
+                  x-microcks-default: true
+                  value:
+                    id: 0000001-200101120000000-oozie-admin-W
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      tags:
+      - Jobs
+      summary: Apache Oozie List Jobs
+      description: Returns a list of jobs matching the specified filters with pagination support.
+      operationId: getJobs
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        description: Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING).
+        schema:
+          type: string
+        example: user%3Dadmin%3Bstatus%3DRUNNING
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset, 1-based.
+        schema:
+          type: integer
+          default: 1
+        example: 1
+      - name: len
+        in: query
+        required: false
+        description: Maximum number of jobs to return.
+        schema:
+          type: integer
+          default: 50
+        example: 50
+      - name: timezone
+        in: query
+        required: false
+        description: Timezone for date formatting in response.
+        schema:
+          type: string
+          default: GMT
+        example: GMT
+      - name: jobtype
+        in: query
+        required: false
+        description: Filter by job type (wf, coordinator, bundle).
+        schema:
+          type: string
+          enum:
+          - wf
+          - coordinator
+          - bundle
+      - name: bulk
+        in: query
+        required: false
+        description: Bulk filter for coordinator action status queries.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of matching jobs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+              examples:
+                GetJobs200Example:
+                  summary: Default getJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    offset: 1
+                    len: 50
+                    total: 2
+                    workflows:
+                    - id: 0000001-200101120000000-oozie-admin-W
+                      appName: my-workflow
+                      status: RUNNING
+                      user: admin
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      tags:
+      - Jobs
+      summary: Apache Oozie Bulk Job Action
+      description: Apply an action (kill, suspend, resume) to multiple jobs matching filter criteria.
+      operationId: bulkJobAction
+      parameters:
+      - name: action
+        in: query
+        required: true
+        description: Action to apply to matching jobs.
+        schema:
+          type: string
+          enum:
+          - kill
+          - suspend
+          - resume
+      - name: filter
+        in: query
+        required: false
+        description: Filter criteria for selecting target jobs.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset.
+        schema:
+          type: integer
+      - name: len
+        in: query
+        required: false
+        description: Maximum number of jobs to affect.
+        schema:
+          type: integer
+      - name: jobtype
+        in: query
+        required: false
+        description: Job type to filter by.
+        schema:
+          type: string
+          enum:
+          - wf
+          - coordinator
+          - bundle
+      responses:
+        '200':
+          description: Bulk action applied successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/validate:
+    post:
+      tags:
+      - Jobs
+      summary: Apache Oozie Validate Workflow XML
+      description: Validates a workflow, coordinator, or bundle XML definition from the local filesystem or HDFS. The file path is provided as a query parameter and the XML content in the request body.
+      operationId: validateJobXml
+      parameters:
+      - name: file
+        in: query
+        required: true
+        description: Local or HDFS path to the XML file to validate.
+        schema:
+          type: string
+        example: hdfs://localhost:8020/user/admin/myApp/workflow.xml
+      requestBody:
+        required: true
+        description: XML workflow, coordinator, or bundle definition to validate.
+        content:
+          application/xml:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: XML validation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResult'
+              examples:
+                ValidateJobXml200Example:
+                  summary: Default validateJobXml 200 response
+                  x-microcks-default: true
+                  value:
+                    validate:
+                      status: valid
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    JobId:
+      type: object
+      description: Job submission response containing the assigned job ID.
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The Oozie job identifier assigned to the submitted job.
+          example: 0000001-200101120000000-oozie-admin-W
+    ValidationResult:
+      type: object
+      description: Result of XML definition validation.
+      properties:
+        validate:
+          type: object
+          description: Validation outcome.
+          properties:
+            status:
+              type: string
+              description: Validation status.
+              example: valid
+    ErrorResponse:
+      type: object
+      description: Standard Oozie error response.
+      properties:
+        httpStatusCode:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        oozieErrorCode:
+          type: string
+          description: Oozie-specific error code.
+          example: E0401
+        message:
+          type: string
+          description: Human-readable error message.
+          example: Command exception
+    JobList:
+      type: object
+      description: Paginated list of jobs.
+      properties:
+        offset:
+          type: integer
+          description: Pagination offset (1-based).
+          example: 1
+        len:
+          type: integer
+          description: Maximum results requested.
+          example: 50
+        total:
+          type: integer
+          description: Total number of matching jobs.
+          example: 100
+        workflows:
+          type: array
+          description: List of workflow job entries.
+          items:
+            $ref: '#/components/schemas/JobInfo'
+        coordinatorjobs:
+          type: array
+          description: List of coordinator job entries.
+          items:
+            $ref: '#/components/schemas/JobInfo'
+        bundlejobs:
+          type: array
+          description: List of bundle job entries.
+          items:
+            $ref: '#/components/schemas/JobInfo'
+    JobAction:
+      type: object
+      description: A single action within a workflow job.
+      properties:
+        id:
+          type: string
+          description: Action identifier.
+          example: 0000001-200101120000000-oozie-admin-W@action1
+        name:
+          type: string
+          description: Action name as defined in the workflow.
+          example: my-map-reduce
+        type:
+          type: string
+          description: Action type (map-reduce, pig, hive, etc.).
+          example: map-reduce
+        status:
+          type: string
+          description: Current action status.
+          example: OK
+        startTime:
+          type: string
+          format: date-time
+          description: Action start timestamp.
+          example: '2021-01-01T12:00:00.000Z'
+        endTime:
+          type: string
+          format: date-time
+          description: Action end timestamp.
+          example: '2021-01-01T12:05:00.000Z'
+        errorCode:
+          type: string
+          description: Error code if the action failed.
+          example: null
+        errorMessage:
+          type: string
+          description: Error message if the action failed.
+          example: null
+    JobInfo:
+      type: object
+      description: Full information about a workflow, coordinator, or bundle job.
+      properties:
+        id:
+          type: string
+          description: Job identifier.
+          example: 0000001-200101120000000-oozie-admin-W
+        appName:
+          type: string
+          description: Application name from the workflow definition.
+          example: my-workflow
+        appPath:
+          type: string
+          description: HDFS path to the workflow application.
+          example: hdfs://localhost:8020/user/admin/workflow
+        status:
+          type: string
+          description: Current job status.
+          example: RUNNING
+        user:
+          type: string
+          description: User who submitted the job.
+          example: admin
+        group:
+          type: string
+          description: User group for the job.
+          example: users
+        startTime:
+          type: string
+          format: date-time
+          description: Job start timestamp.
+          example: '2021-01-01T12:00:00.000Z'
+        endTime:
+          type: string
+          format: date-time
+          description: Job end timestamp (null if still running).
+        lastModTime:
+          type: string
+          format: date-time
+          description: Last modification timestamp.
+        createdTime:
+          type: string
+          format: date-time
+          description: Job creation timestamp.
+        run:
+          type: integer
+          description: Run number for rerun tracking.
+          example: 0
+        actions:
+          type: array
+          description: List of actions within the job (workflow jobs only).
+          items:
+            $ref: '#/components/schemas/JobAction'
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

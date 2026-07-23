@@ -1,0 +1,252 @@
+openapi: 3.0.3
+info:
+  title: Apache Oozie REST Admin API
+  description: The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).
+  version: 5.2.1
+  license:
+    name: Apache 2.0
+    identifier: Apache-2.0
+  contact:
+    name: Apache Oozie
+    url: https://oozie.apache.org
+servers:
+- url: http://localhost:11000/oozie
+  description: Apache Oozie server (default port 11000)
+tags:
+- name: Admin
+  description: System administration, configuration, and monitoring
+paths:
+  /v1/admin/status:
+    get:
+      tags:
+      - Admin
+      summary: Apache Oozie Get System Status
+      description: Returns the current Oozie system mode (NORMAL, NOWEBSERVICE, or SAFEMODE).
+      operationId: getStatus
+      responses:
+        '200':
+          description: Current system status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStatus'
+              examples:
+                GetStatus200Example:
+                  summary: Default getStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    systemMode: NORMAL
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      tags:
+      - Admin
+      summary: Apache Oozie Change System Status
+      description: Changes the Oozie system mode. Valid values are NORMAL, NOWEBSERVICE, and SAFEMODE.
+      operationId: setStatus
+      parameters:
+      - name: systemmode
+        in: query
+        required: true
+        description: The new system mode to set.
+        schema:
+          type: string
+          enum:
+          - NORMAL
+          - NOWEBSERVICE
+          - SAFEMODE
+        example: SAFEMODE
+      responses:
+        '200':
+          description: System mode changed successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/admin/os-env:
+    get:
+      tags:
+      - Admin
+      summary: Apache Oozie Get OS Environment Variables
+      description: Returns the operating system environment variables of the Oozie server.
+      operationId: getOsEnv
+      responses:
+        '200':
+          description: OS environment variables as key-value pairs.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+              examples:
+                GetOsEnv200Example:
+                  summary: Default getOsEnv 200 response
+                  x-microcks-default: true
+                  value:
+                    JAVA_HOME: /usr/lib/jvm/java-8-openjdk
+                    HADOOP_HOME: /opt/hadoop
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/admin/configuration:
+    get:
+      tags:
+      - Admin
+      summary: Apache Oozie Get System Configuration
+      description: Returns the Oozie system configuration as key-value pairs.
+      operationId: getConfiguration
+      responses:
+        '200':
+          description: Oozie system configuration properties.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/admin/build-version:
+    get:
+      tags:
+      - Admin
+      summary: Apache Oozie Get Build Version
+      description: Returns the Oozie server build version information.
+      operationId: getBuildVersion
+      responses:
+        '200':
+          description: Build version information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildVersion'
+              examples:
+                GetBuildVersion200Example:
+                  summary: Default getBuildVersion 200 response
+                  x-microcks-default: true
+                  value:
+                    buildVersion: 5.2.1
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/admin/metrics:
+    get:
+      tags:
+      - Admin
+      summary: Apache Oozie Get System Metrics
+      description: Returns current Oozie system performance metrics.
+      operationId: getMetrics
+      responses:
+        '200':
+          description: System performance metrics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemMetrics'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v2/admin/available-oozie-servers:
+    get:
+      tags:
+      - Admin
+      summary: Apache Oozie List Available Servers
+      description: Returns the list of available Oozie servers in a high availability setup.
+      operationId: getAvailableServers
+      responses:
+        '200':
+          description: List of available Oozie servers with their URLs.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SystemMetrics:
+      type: object
+      description: Oozie server performance and operational metrics.
+      properties:
+        gauges:
+          type: object
+          additionalProperties: true
+          description: Gauge metrics keyed by metric name.
+        counters:
+          type: object
+          additionalProperties: true
+          description: Counter metrics keyed by metric name.
+        timers:
+          type: object
+          additionalProperties: true
+          description: Timer metrics keyed by metric name.
+    ErrorResponse:
+      type: object
+      description: Standard Oozie error response.
+      properties:
+        httpStatusCode:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        oozieErrorCode:
+          type: string
+          description: Oozie-specific error code.
+          example: E0401
+        message:
+          type: string
+          description: Human-readable error message.
+          example: Command exception
+    BuildVersion:
+      type: object
+      description: Oozie server build version information.
+      properties:
+        buildVersion:
+          type: string
+          description: The Oozie build version string.
+          example: 5.2.1
+    SystemStatus:
+      type: object
+      description: Oozie system mode status.
+      properties:
+        systemMode:
+          type: string
+          description: Current system mode.
+          enum:
+          - NORMAL
+          - NOWEBSERVICE
+          - SAFEMODE
+          example: NORMAL
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

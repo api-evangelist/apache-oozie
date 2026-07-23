@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Apache Oozie REST Admin Versions API
+  description: The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).
+  version: 5.2.1
+  license:
+    name: Apache 2.0
+    identifier: Apache-2.0
+  contact:
+    name: Apache Oozie
+    url: https://oozie.apache.org
+servers:
+- url: http://localhost:11000/oozie
+  description: Apache Oozie server (default port 11000)
+tags:
+- name: Versions
+  description: Supported protocol version discovery
+paths:
+  /versions:
+    get:
+      tags:
+      - Versions
+      summary: Apache Oozie Get Supported API Versions
+      description: Returns the list of supported Oozie API protocol versions.
+      operationId: getVersions
+      responses:
+        '200':
+          description: List of supported protocol versions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+              examples:
+                GetVersions200Example:
+                  summary: Default getVersions 200 response
+                  x-microcks-default: true
+                  value:
+                  - 0
+                  - 1
+                  - 2
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard Oozie error response.
+      properties:
+        httpStatusCode:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        oozieErrorCode:
+          type: string
+          description: Oozie-specific error code.
+          example: E0401
+        message:
+          type: string
+          description: Human-readable error message.
+          example: Command exception
