@@ -6,9 +6,21 @@ description: Apache Oozie is a workflow scheduler system for managing Apache Had
   provides a REST API for job submission, lifecycle management, monitoring, and system administration. Governed by the Apache
   Software Foundation under the Apache License 2.0, written in Java.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-oozie.png
 tags:
 - Workflow
 - Hadoop
@@ -23,36 +35,126 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: apache-oozie:apache-oozie-rest-api
-  name: Apache Oozie REST API
-  description: The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator,
-    and bundle jobs on Apache Hadoop. Supports full job lifecycle management (submit, start, suspend, resume, kill, rerun),
-    log and status retrieval, DAG visualization, SLA management, and system administration. Available at /oozie/v1 and /oozie/v2
-    with JSON responses.
+- aid: apache-oozie:apache-oozie-admin-api
+  name: Apache Oozie Admin API
+  description: System administration, configuration, and monitoring
   humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   baseURL: http://localhost:11000/oozie
   tags:
-  - REST
-  - Hadoop
-  - Workflow Management
-  - Job Scheduling
+  - Admin
   properties:
+  - type: OpenAPI
+    url: openapi/apache-oozie-admin-api-openapi.yml
   - type: Documentation
     url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-admin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-job.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-jobs.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-versions.yaml
+- aid: apache-oozie:apache-oozie-job-api
+  name: Apache Oozie Job API
+  description: Single job lifecycle management and information retrieval
+  humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+  baseURL: http://localhost:11000/oozie
+  tags:
+  - Job
+  properties:
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/openapi/apache-oozie-openapi.yaml
+    url: openapi/apache-oozie-job-api-openapi.yml
+  - type: Documentation
+    url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
-    title: Job Info Schema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
   - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
-    title: Job List Schema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
   - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
-    title: Job ID Schema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
   - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
-    title: System Status Schema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-admin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-job.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-jobs.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-versions.yaml
+- aid: apache-oozie:apache-oozie-jobs-api
+  name: Apache Oozie Jobs API
+  description: Job submission and bulk management
+  humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+  baseURL: http://localhost:11000/oozie
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-oozie-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-admin.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-job.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-jobs.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/apache-oozie-versions.yaml
+- aid: apache-oozie:apache-oozie-versions-api
+  name: Apache Oozie Versions API
+  description: Supported protocol version discovery
+  humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+  baseURL: http://localhost:11000/oozie
+  tags:
+  - Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-oozie-versions-api-openapi.yml
+  - type: Documentation
+    url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
   - type: X-NaftikoCapability
     url: capabilities/apache-oozie-admin.yaml
   - type: X-NaftikoCapability
