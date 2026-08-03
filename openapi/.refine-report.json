@@ -1,0 +1,20 @@
+{
+  "provider": "apache-oozie",
+  "sources": [
+    "apache-oozie-admin-api-openapi.yml",
+    "apache-oozie-job-api-openapi.yml",
+    "apache-oozie-jobs-api-openapi.yml",
+    "apache-oozie-versions-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-oozie-admin-api-openapi.yml",
+    "apache-oozie-job-api-openapi.yml",
+    "apache-oozie-jobs-api-openapi.yml",
+    "apache-oozie-versions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
