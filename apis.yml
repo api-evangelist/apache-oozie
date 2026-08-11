@@ -59,14 +59,6 @@ apis:
   - type: JSONSchema
     url: >-
       https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-admin.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-job.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-jobs.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-versions.yaml
 - aid: apache-oozie:apache-oozie-job-api
   name: Apache Oozie Job API
   description: Single job lifecycle management and information retrieval
@@ -91,14 +83,6 @@ apis:
   - type: JSONSchema
     url: >-
       https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-admin.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-job.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-jobs.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-versions.yaml
 - aid: apache-oozie:apache-oozie-jobs-api
   name: Apache Oozie Jobs API
   description: Job submission and bulk management
@@ -123,14 +107,6 @@ apis:
   - type: JSONSchema
     url: >-
       https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-admin.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-job.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-jobs.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-versions.yaml
 - aid: apache-oozie:apache-oozie-versions-api
   name: Apache Oozie Versions API
   description: Supported protocol version discovery
@@ -155,15 +131,12 @@ apis:
   - type: JSONSchema
     url: >-
       https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-admin.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-job.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-jobs.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apache-oozie-versions.yaml
 common:
+- type: CodeOfConduct
+  url: https://github.com/apache/.github/blob/main/.github/CODE_OF_CONDUCT.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/apache/oozie/blob/master/LICENSE
 - type: AgenticAccess
   url: agentic-access/apache-oozie-agentic-access.yml
 - type: VulnerabilityDisclosure
