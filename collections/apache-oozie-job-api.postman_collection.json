@@ -1,0 +1,1492 @@
+{
+  "item": [
+    {
+      "id": "f9959246-b35d-44ee-a39c-73c06ab9c062",
+      "name": "Job",
+      "description": {
+        "content": "Single job lifecycle management and information retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc436d98-7a0e-422e-b136-b21932efa710",
+          "name": "Apache Oozie Get Job Info",
+          "request": {
+            "name": "Apache Oozie Get Job Info",
+            "description": {
+              "content": "Returns information, definition, logs, or graph for a specific job. Use the show parameter to control response type: info (default), definition, log, graph.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "job",
+                ":job-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "show",
+                  "value": "info",
+                  "description": "Type of information to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "GMT",
+                  "description": "Timezone for date formatting."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for action pagination within the job."
+                },
+                {
+                  "disabled": false,
+                  "key": "len",
+                  "value": "<integer>",
+                  "description": "Number of actions to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Graph format (only when show=graph)."
+                },
+                {
+                  "disabled": false,
+                  "key": "logfilter",
+                  "value": "<string>",
+                  "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job-id",
+                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "213136d6-c4e9-4e95-89a2-612442dbb8cc",
+              "name": "Job information, definition, log, or graph.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "GMT"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "len",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logfilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0000001-200101120000000-oozie-admin-W\",\n  \"appName\": \"my-workflow\",\n  \"status\": \"RUNNING\",\n  \"user\": \"admin\",\n  \"group\": \"users\",\n  \"startTime\": \"2021-01-01T12:00:00.000Z\",\n  \"endTime\": null,\n  \"actions\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f612c83c-ad8c-4233-bc81-959167c05bfa",
+              "name": "Bad request - invalid parameters or configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "GMT"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "len",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logfilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e6dd68b-136b-46d4-a856-0297b02479a9",
+              "name": "Job or resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "GMT"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "len",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logfilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb92fd94-1473-4113-86d5-d5958b1f4576",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "GMT"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "len",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logfilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69c03b2d-1818-4113-b26f-e2fcdf7b8c78",
+          "name": "Apache Oozie Manage Job",
+          "request": {
+            "name": "Apache Oozie Manage Job",
+            "description": {
+              "content": "Apply a management action to a specific job. Supported actions: start, suspend, resume, kill, dryrun, rerun, coord-rerun, bundle-rerun, change, ignore, sla-change, sla-disable, sla-enable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "job",
+                ":job-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) Action to apply to the job."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Rerun type (action or date) for coord-rerun action."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type)."
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh",
+                  "value": "<boolean>",
+                  "description": "Whether to refresh coordinator configuration on rerun."
+                },
+                {
+                  "disabled": false,
+                  "key": "nocleanup",
+                  "value": "<boolean>",
+                  "description": "Whether to skip cleanup of workflow output directories on rerun."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job-id",
+                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "826ac7a8-26fc-4dc9-b179-e175ad613401",
+              "name": "Action applied successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "start"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nocleanup",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c048e87c-6c69-464c-88bc-9773bc40a8c8",
+              "name": "Bad request - invalid parameters or configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "start"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nocleanup",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0533fe95-4932-438b-b050-f93bab38e493",
+              "name": "Job or resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "start"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nocleanup",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88be5b49-60f8-42a7-bf91-b35453759306",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "start"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nocleanup",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8229df7-681e-4436-b9a1-b074a1608dc5",
+          "name": "Apache Oozie Get Job Info v2",
+          "request": {
+            "name": "Apache Oozie Get Job Info v2",
+            "description": {
+              "content": "Version 2 of job information retrieval. Supports additional show options: errorlog, auditlog, status, jmstopic, retries, allruns, missing-dependencies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "job",
+                ":job-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "show",
+                  "value": "info",
+                  "description": "Type of information to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>",
+                  "description": "Timezone for date formatting."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter type for allruns (action)."
+                },
+                {
+                  "disabled": false,
+                  "key": "action-list",
+                  "value": "<string>",
+                  "description": "Comma-separated action IDs for missing-dependencies or SLA operations."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job-id",
+                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "262e7b6e-9e4f-4ee2-8609-f94cc7351e4a",
+              "name": "Job information in the requested format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0000001-200101120000000-oozie-admin-C\",\n  \"appName\": \"my-coordinator\",\n  \"status\": \"RUNNING\",\n  \"user\": \"admin\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b547018f-08f1-4fed-8a89-77d36c842625",
+              "name": "Bad request - invalid parameters or configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d8ecce9-d495-45c4-a515-b9b67d296740",
+              "name": "Job or resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55ff2fce-6274-4e20-8680-5bce472e4bad",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show",
+                      "value": "info"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea9a52e9-3cf7-444c-a972-2c26155b8f45",
+          "name": "Apache Oozie Manage Job v2",
+          "request": {
+            "name": "Apache Oozie Manage Job v2",
+            "description": {
+              "content": "Version 2 of job management. Supports additional actions: update (coordinator definition update), ignore, sla-change, sla-disable, sla-enable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "job",
+                ":job-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) Action to apply to the job."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Ignore type (action)."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Scope of actions to ignore (e.g., 3-4)."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "SLA change value as key=value pairs."
+                },
+                {
+                  "disabled": false,
+                  "key": "action-list",
+                  "value": "<string>",
+                  "description": "Comma-separated action list for SLA enable/disable."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job-id",
+                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d200af98-b2c4-4bf2-ac65-0a40f3522e85",
+              "name": "Action applied successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9695dcb3-0cc6-41a3-9b7a-a1c4c82bb469",
+              "name": "Bad request - invalid parameters or configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0b964f9-e1bf-4bd0-82e0-27fcf6a461df",
+              "name": "Job or resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05556f7c-27df-4708-bb11-1fca901f6d10",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job",
+                    ":job-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action-list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job-id",
+                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:11000/oozie",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a25d8003-36e6-4a78-9695-6d45634f6b2f",
+    "name": "Apache Oozie REST Admin Job API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
+      "type": "text/plain"
+    }
+  }
+}

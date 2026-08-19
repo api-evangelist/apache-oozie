@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Oozie REST Admin API",
+    "version": "5.2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Oozie Get System Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v1/admin/status"
+          },
+          "docs": "Returns the current Oozie system mode (NORMAL, NOWEBSERVICE, or SAFEMODE)."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Change System Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:11000/oozie/v1/admin/status",
+            "params": [
+              {
+                "name": "systemmode",
+                "value": "SAFEMODE",
+                "type": "query",
+                "description": "The new system mode to set."
+              }
+            ]
+          },
+          "docs": "Changes the Oozie system mode. Valid values are NORMAL, NOWEBSERVICE, and SAFEMODE."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Get OS Environment Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v1/admin/os-env"
+          },
+          "docs": "Returns the operating system environment variables of the Oozie server."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Get System Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v1/admin/configuration"
+          },
+          "docs": "Returns the Oozie system configuration as key-value pairs."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Get Build Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v1/admin/build-version"
+          },
+          "docs": "Returns the Oozie server build version information."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Get System Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v2/admin/metrics"
+          },
+          "docs": "Returns current Oozie system performance metrics."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie List Available Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v2/admin/available-oozie-servers"
+          },
+          "docs": "Returns the list of available Oozie servers in a high availability setup."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

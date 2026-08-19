@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Oozie REST Admin Job API",
+    "version": "5.2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Oozie Get Job Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v1/job/:job-id",
+            "params": [
+              {
+                "name": "job-id",
+                "value": "0000001-200101120000000-oozie-admin-W",
+                "type": "path",
+                "description": "The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+              },
+              {
+                "name": "show",
+                "value": "info",
+                "type": "query",
+                "description": "Type of information to return."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone for date formatting."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for action pagination within the job."
+              },
+              {
+                "name": "len",
+                "value": "",
+                "type": "query",
+                "description": "Number of actions to return."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Graph format (only when show=graph)."
+              },
+              {
+                "name": "logfilter",
+                "value": "",
+                "type": "query",
+                "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs."
+              }
+            ]
+          },
+          "docs": "Returns information, definition, logs, or graph for a specific job. Use the show parameter to control response type: info (default), definition, log, graph."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Manage Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:11000/oozie/v1/job/:job-id",
+            "params": [
+              {
+                "name": "job-id",
+                "value": "0000001-200101120000000-oozie-admin-W",
+                "type": "path",
+                "description": "The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+              },
+              {
+                "name": "action",
+                "value": "start",
+                "type": "query",
+                "description": "Action to apply to the job."
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Rerun type (action or date) for coord-rerun action."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type)."
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Whether to refresh coordinator configuration on rerun."
+              },
+              {
+                "name": "nocleanup",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip cleanup of workflow output directories on rerun."
+              }
+            ]
+          },
+          "docs": "Apply a management action to a specific job. Supported actions: start, suspend, resume, kill, dryrun, rerun, coord-rerun, bundle-rerun, change, ignore, sla-change, sla-disable, sla-enable."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Get Job Info v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/v2/job/:job-id",
+            "params": [
+              {
+                "name": "job-id",
+                "value": "0000001-200101120000000-oozie-admin-W",
+                "type": "path",
+                "description": "The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+              },
+              {
+                "name": "show",
+                "value": "",
+                "type": "query",
+                "description": "Type of information to return."
+              },
+              {
+                "name": "timezone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone for date formatting."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter type for allruns (action)."
+              },
+              {
+                "name": "action-list",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated action IDs for missing-dependencies or SLA operations."
+              }
+            ]
+          },
+          "docs": "Version 2 of job information retrieval. Supports additional show options: errorlog, auditlog, status, jmstopic, retries, allruns, missing-dependencies."
+        },
+        {
+          "info": {
+            "name": "Apache Oozie Manage Job v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:11000/oozie/v2/job/:job-id",
+            "params": [
+              {
+                "name": "job-id",
+                "value": "0000001-200101120000000-oozie-admin-W",
+                "type": "path",
+                "description": "The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "Action to apply to the job."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Ignore type (action)."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Scope of actions to ignore (e.g., 3-4)."
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "SLA change value as key=value pairs."
+              },
+              {
+                "name": "action-list",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated action list for SLA enable/disable."
+              }
+            ]
+          },
+          "docs": "Version 2 of job management. Supports additional actions: update (coordinator definition update), ignore, sla-change, sla-disable, sla-enable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

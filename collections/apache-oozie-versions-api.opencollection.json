@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Oozie REST Admin Versions API",
+    "version": "5.2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Oozie Get Supported API Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:11000/oozie/versions"
+          },
+          "docs": "Returns the list of supported Oozie API protocol versions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

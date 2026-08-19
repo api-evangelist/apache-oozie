@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "f76965ba-ac92-4a2b-92a2-e57e8cd0d325",
+      "name": "Versions",
+      "description": {
+        "content": "Supported protocol version discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60cbc482-1220-4679-a6ea-f7e2d2f76e22",
+          "name": "Apache Oozie Get Supported API Versions",
+          "request": {
+            "name": "Apache Oozie Get Supported API Versions",
+            "description": {
+              "content": "Returns the list of supported Oozie API protocol versions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4aa2cf0-d4c3-4f62-905e-3543664010c8",
+              "name": "List of supported protocol versions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  0,\n  1,\n  2\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2cd925d-965d-4474-a5ff-f3120ee413ac",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:11000/oozie",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3ad884f5-19e5-4e47-8877-c69b3041f1b8",
+    "name": "Apache Oozie REST Admin Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
+      "type": "text/plain"
+    }
+  }
+}
