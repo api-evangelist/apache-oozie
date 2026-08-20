@@ -22,6 +22,15 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-oozie.png
 tags:
+- Workflows
+- Hadoop
+- Orchestration
+- Scheduling
+- Big Data
+- Apache
+- Java
+- Open-Source
+tags_raw:
 - Workflow
 - Hadoop
 - Orchestration
@@ -89,6 +98,8 @@ apis:
   humanURL: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   baseURL: http://localhost:11000/oozie
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
