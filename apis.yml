@@ -1,10 +1,11 @@
 aid: apache-oozie
 name: Apache Oozie
-description: Apache Oozie is a workflow scheduler system for managing Apache Hadoop jobs. It enables users to define workflows
-  as directed acyclic graphs (DAGs) of actions including MapReduce, Pig, Hive, Sqoop, and custom Java/shell steps. Coordinator
-  jobs trigger workflows based on time schedules or data availability, while bundle jobs group multiple coordinators. Oozie
-  provides a REST API for job submission, lifecycle management, monitoring, and system administration. Governed by the Apache
-  Software Foundation under the Apache License 2.0, written in Java.
+description: Apache Oozie is a workflow scheduler system for managing Apache Hadoop jobs. It enables users
+  to define workflows as directed acyclic graphs (DAGs) of actions including MapReduce, Pig, Hive, Sqoop,
+  and custom Java/shell steps. Coordinator jobs trigger workflows based on time schedules or data availability,
+  while bundle jobs group multiple coordinators. Oozie provides a REST API for job submission, lifecycle
+  management, monitoring, and system administration. Governed by the Apache Software Foundation under
+  the Apache License 2.0, written in Java.
 type: Index
 deliveryModel:
   model: open-core
@@ -54,7 +55,7 @@ tags_raw:
 - Java
 - Open Source
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
@@ -71,17 +72,13 @@ apis:
   - type: Documentation
     url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
 - aid: apache-oozie:apache-oozie-job-api
   name: Apache Oozie Job API
   description: Single job lifecycle management and information retrieval
@@ -95,17 +92,13 @@ apis:
   - type: Documentation
     url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
 - aid: apache-oozie:apache-oozie-jobs-api
   name: Apache Oozie Jobs API
   description: Job submission and bulk management
@@ -121,17 +114,13 @@ apis:
   - type: Documentation
     url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
 - aid: apache-oozie:apache-oozie-versions-api
   name: Apache Oozie Versions API
   description: Supported protocol version discovery
@@ -145,18 +134,16 @@ apis:
   - type: Documentation
     url: https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-info-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-list-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-job-id-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
 common:
+- type: Website
+  url: https://apache.org
 - type: CodeOfConduct
   url: https://github.com/apache/.github/blob/main/.github/CODE_OF_CONDUCT.md
 - type: License
@@ -209,7 +196,8 @@ common:
   - name: Directed Acyclic Graph Workflows
     description: Define complex data processing pipelines as DAGs of actions executed on Apache Hadoop.
   - name: Coordinator Jobs
-    description: Schedule recurring workflows triggered by time intervals or data availability conditions in HDFS.
+    description: Schedule recurring workflows triggered by time intervals or data availability conditions
+      in HDFS.
   - name: Bundle Jobs
     description: Group multiple coordinator jobs into a single bundle for coordinated lifecycle management.
   - name: REST API Management
@@ -217,11 +205,13 @@ common:
   - name: Native Hadoop Action Types
     description: Built-in support for MapReduce, Pig, Hive, Sqoop, Distcp, and custom Java/shell actions.
   - name: SLA Management
-    description: Define and monitor service level agreements on workflow and coordinator actions with alert capabilities.
+    description: Define and monitor service level agreements on workflow and coordinator actions with
+      alert capabilities.
   - name: DAG Visualization
     description: Generate PNG, SVG, or DOT graph visualizations of workflow DAGs for debugging and documentation.
   - name: Log Retrieval
-    description: Retrieve execution logs, error logs, and audit trails for jobs via REST API with filtering support.
+    description: Retrieve execution logs, error logs, and audit trails for jobs via REST API with filtering
+      support.
   - name: High Availability
     description: Built-in HA support with multiple Oozie server instances and distributed state management.
   - name: Shared Library Support
@@ -229,15 +219,18 @@ common:
 - type: UseCases
   data:
   - name: ETL Pipeline Orchestration
-    description: Orchestrate multi-step ETL pipelines combining Hive queries, MapReduce jobs, and data transfers on Hadoop.
+    description: Orchestrate multi-step ETL pipelines combining Hive queries, MapReduce jobs, and data
+      transfers on Hadoop.
   - name: Scheduled Data Processing
     description: Run recurring Hadoop batch jobs on time-based schedules using coordinator jobs.
   - name: Data-Triggered Workflows
-    description: Trigger workflows automatically when new data arrives in HDFS using coordinator data-in conditions.
+    description: Trigger workflows automatically when new data arrives in HDFS using coordinator data-in
+      conditions.
   - name: Machine Learning Pipeline Automation
     description: Automate ML model training and evaluation pipelines on Hadoop with dependency chaining.
   - name: Data Migration and Archival
-    description: Orchestrate large-scale data migration, compaction, and archival workflows across Hadoop clusters.
+    description: Orchestrate large-scale data migration, compaction, and archival workflows across Hadoop
+      clusters.
   - name: Multi-Cluster Coordination
     description: Coordinate workflows that span multiple Hadoop clusters using Distcp and remote actions.
 - type: Integrations
