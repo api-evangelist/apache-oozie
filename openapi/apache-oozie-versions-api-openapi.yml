@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Apache Oozie REST Admin Versions API
+  title: Apache Oozie REST Versions API
   description: The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).
   version: 5.2.1
   license:
