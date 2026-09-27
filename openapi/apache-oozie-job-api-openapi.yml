@@ -318,25 +318,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or configuration.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Job or resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     JobInfo:
       type: object
@@ -392,22 +373,6 @@ components:
           description: List of actions within the job (workflow jobs only).
           items:
             $ref: '#/components/schemas/JobAction'
-    ErrorResponse:
-      type: object
-      description: Standard Oozie error response.
-      properties:
-        httpStatusCode:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        oozieErrorCode:
-          type: string
-          description: Oozie-specific error code.
-          example: E0401
-        message:
-          type: string
-          description: Human-readable error message.
-          example: Command exception
     JobAction:
       type: object
       description: A single action within a workflow job.
@@ -446,6 +411,22 @@ components:
           type: string
           description: Error message if the action failed.
           example: null
+    ErrorResponse:
+      type: object
+      description: Standard Oozie error response.
+      properties:
+        httpStatusCode:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        oozieErrorCode:
+          type: string
+          description: Oozie-specific error code.
+          example: E0401
+        message:
+          type: string
+          description: Human-readable error message.
+          example: Command exception
   parameters:
     jobId:
       name: job-id
@@ -455,3 +436,22 @@ components:
       schema:
         type: string
       example: 0000001-200101120000000-oozie-admin-W
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Job or resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

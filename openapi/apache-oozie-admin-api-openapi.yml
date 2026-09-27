@@ -184,19 +184,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or configuration.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     SystemStatus:
       type: object
@@ -210,30 +197,6 @@ components:
           - NOWEBSERVICE
           - SAFEMODE
           example: NORMAL
-    ErrorResponse:
-      type: object
-      description: Standard Oozie error response.
-      properties:
-        httpStatusCode:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        oozieErrorCode:
-          type: string
-          description: Oozie-specific error code.
-          example: E0401
-        message:
-          type: string
-          description: Human-readable error message.
-          example: Command exception
-    BuildVersion:
-      type: object
-      description: Oozie server build version information.
-      properties:
-        buildVersion:
-          type: string
-          description: The Oozie build version string.
-          example: 5.2.1
     SystemMetrics:
       type: object
       description: Oozie server performance and operational metrics.
@@ -250,3 +213,40 @@ components:
           type: object
           additionalProperties: true
           description: Timer metrics keyed by metric name.
+    BuildVersion:
+      type: object
+      description: Oozie server build version information.
+      properties:
+        buildVersion:
+          type: string
+          description: The Oozie build version string.
+          example: 5.2.1
+    ErrorResponse:
+      type: object
+      description: Standard Oozie error response.
+      properties:
+        httpStatusCode:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        oozieErrorCode:
+          type: string
+          description: Oozie-specific error code.
+          example: E0401
+        message:
+          type: string
+          description: Human-readable error message.
+          example: Command exception
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

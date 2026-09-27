@@ -251,19 +251,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or configuration.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     JobInfo:
       type: object
@@ -319,22 +306,18 @@ components:
           description: List of actions within the job (workflow jobs only).
           items:
             $ref: '#/components/schemas/JobAction'
-    ErrorResponse:
+    ValidationResult:
       type: object
-      description: Standard Oozie error response.
+      description: Result of XML definition validation.
       properties:
-        httpStatusCode:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        oozieErrorCode:
-          type: string
-          description: Oozie-specific error code.
-          example: E0401
-        message:
-          type: string
-          description: Human-readable error message.
-          example: Command exception
+        validate:
+          type: object
+          description: Validation outcome.
+          properties:
+            status:
+              type: string
+              description: Validation status.
+              example: valid
     JobList:
       type: object
       description: Paginated list of jobs.
@@ -366,18 +349,16 @@ components:
           description: List of bundle job entries.
           items:
             $ref: '#/components/schemas/JobInfo'
-    ValidationResult:
+    JobId:
       type: object
-      description: Result of XML definition validation.
+      description: Job submission response containing the assigned job ID.
+      required:
+      - id
       properties:
-        validate:
-          type: object
-          description: Validation outcome.
-          properties:
-            status:
-              type: string
-              description: Validation status.
-              example: valid
+        id:
+          type: string
+          description: The Oozie job identifier assigned to the submitted job.
+          example: 0000001-200101120000000-oozie-admin-W
     JobAction:
       type: object
       description: A single action within a workflow job.
@@ -416,13 +397,32 @@ components:
           type: string
           description: Error message if the action failed.
           example: null
-    JobId:
+    ErrorResponse:
       type: object
-      description: Job submission response containing the assigned job ID.
-      required:
-      - id
+      description: Standard Oozie error response.
       properties:
-        id:
+        httpStatusCode:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        oozieErrorCode:
           type: string
-          description: The Oozie job identifier assigned to the submitted job.
-          example: 0000001-200101120000000-oozie-admin-W
+          description: Oozie-specific error code.
+          example: E0401
+        message:
+          type: string
+          description: Human-readable error message.
+          example: Command exception
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

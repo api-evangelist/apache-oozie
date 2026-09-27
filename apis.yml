@@ -44,7 +44,7 @@ tags:
 - Big Data
 - Apache
 - Java
-- Open-Source
+- Open Source
 tags_raw:
 - Workflow
 - Hadoop
@@ -54,6 +54,7 @@ tags_raw:
 - Apache
 - Java
 - Open Source
+- Open-Source
 created: '2026-03-16'
 modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/apis.yml
