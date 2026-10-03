@@ -184,19 +184,20 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    SystemStatus:
-      type: object
-      description: Oozie system mode status.
-      properties:
-        systemMode:
-          type: string
-          description: Current system mode.
-          enum:
-          - NORMAL
-          - NOWEBSERVICE
-          - SAFEMODE
-          example: NORMAL
     SystemMetrics:
       type: object
       description: Oozie server performance and operational metrics.
@@ -221,6 +222,18 @@ components:
           type: string
           description: The Oozie build version string.
           example: 5.2.1
+    SystemStatus:
+      type: object
+      description: Oozie system mode status.
+      properties:
+        systemMode:
+          type: string
+          description: Current system mode.
+          enum:
+          - NORMAL
+          - NOWEBSERVICE
+          - SAFEMODE
+          example: NORMAL
     ErrorResponse:
       type: object
       description: Standard Oozie error response.
@@ -237,16 +250,3 @@ components:
           type: string
           description: Human-readable error message.
           example: Command exception
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters or configuration.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
