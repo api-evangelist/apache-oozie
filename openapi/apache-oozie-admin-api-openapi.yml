@@ -184,44 +184,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or configuration.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    SystemMetrics:
-      type: object
-      description: Oozie server performance and operational metrics.
-      properties:
-        gauges:
-          type: object
-          additionalProperties: true
-          description: Gauge metrics keyed by metric name.
-        counters:
-          type: object
-          additionalProperties: true
-          description: Counter metrics keyed by metric name.
-        timers:
-          type: object
-          additionalProperties: true
-          description: Timer metrics keyed by metric name.
-    BuildVersion:
-      type: object
-      description: Oozie server build version information.
-      properties:
-        buildVersion:
-          type: string
-          description: The Oozie build version string.
-          example: 5.2.1
     SystemStatus:
       type: object
       description: Oozie system mode status.
@@ -234,6 +197,14 @@ components:
           - NOWEBSERVICE
           - SAFEMODE
           example: NORMAL
+    BuildVersion:
+      type: object
+      description: Oozie server build version information.
+      properties:
+        buildVersion:
+          type: string
+          description: The Oozie build version string.
+          example: 5.2.1
     ErrorResponse:
       type: object
       description: Standard Oozie error response.
@@ -250,3 +221,32 @@ components:
           type: string
           description: Human-readable error message.
           example: Command exception
+    SystemMetrics:
+      type: object
+      description: Oozie server performance and operational metrics.
+      properties:
+        gauges:
+          type: object
+          additionalProperties: true
+          description: Gauge metrics keyed by metric name.
+        counters:
+          type: object
+          additionalProperties: true
+          description: Counter metrics keyed by metric name.
+        timers:
+          type: object
+          additionalProperties: true
+          description: Timer metrics keyed by metric name.
+  responses:
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

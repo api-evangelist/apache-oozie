@@ -318,34 +318,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or configuration.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Job or resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    jobId:
-      name: job-id
-      in: path
-      required: true
-      description: The Oozie job identifier (workflow, coordinator, bundle, or action ID).
-      schema:
-        type: string
-      example: 0000001-200101120000000-oozie-admin-W
   schemas:
     JobInfo:
       type: object
@@ -455,3 +427,31 @@ components:
           type: string
           description: Human-readable error message.
           example: Command exception
+  parameters:
+    jobId:
+      name: job-id
+      in: path
+      required: true
+      description: The Oozie job identifier (workflow, coordinator, bundle, or action ID).
+      schema:
+        type: string
+      example: 0000001-200101120000000-oozie-admin-W
+  responses:
+    NotFound:
+      description: Job or resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
