@@ -185,18 +185,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SystemStatus:
-      type: object
-      description: Oozie system mode status.
-      properties:
-        systemMode:
-          type: string
-          description: Current system mode.
-          enum:
-          - NORMAL
-          - NOWEBSERVICE
-          - SAFEMODE
-          example: NORMAL
     BuildVersion:
       type: object
       description: Oozie server build version information.
@@ -237,6 +225,18 @@ components:
           type: object
           additionalProperties: true
           description: Timer metrics keyed by metric name.
+    SystemStatus:
+      type: object
+      description: Oozie system mode status.
+      properties:
+        systemMode:
+          type: string
+          description: Current system mode.
+          enum:
+          - NORMAL
+          - NOWEBSERVICE
+          - SAFEMODE
+          example: NORMAL
   responses:
     InternalServerError:
       description: Internal server error.
