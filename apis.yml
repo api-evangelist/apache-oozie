@@ -143,6 +143,8 @@ apis:
   - type: JSONSchema
     url: https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/json-schema/apache-oozie-system-status-schema.json
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/apache-oozie/overview
 - type: Plans
   url: plans/apache-oozie-plans-pricing.yml
 - type: RateLimits
