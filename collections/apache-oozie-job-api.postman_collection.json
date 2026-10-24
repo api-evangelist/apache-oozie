@@ -1,1492 +1,1629 @@
 {
+  "info": {
+    "_postman_id": "a831ee9f-c22f-4e62-a663-fc367f2695b7",
+    "name": "Apache Oozie REST Job API",
+    "description": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:54.000Z",
+    "updatedAt": "2026-10-22T01:18:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a831ee9f-c22f-4e62-a663-fc367f2695b7"
+  },
   "item": [
     {
-      "id": "f9959246-b35d-44ee-a39c-73c06ab9c062",
-      "name": "Job",
-      "description": {
-        "content": "Single job lifecycle management and information retrieval",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "bc436d98-7a0e-422e-b136-b21932efa710",
-          "name": "Apache Oozie Get Job Info",
-          "request": {
-            "name": "Apache Oozie Get Job Info",
-            "description": {
-              "content": "Returns information, definition, logs, or graph for a specific job. Use the show parameter to control response type: info (default), definition, log, graph.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "job",
-                ":job-id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "show",
-                  "value": "info",
-                  "description": "Type of information to return."
-                },
-                {
-                  "disabled": false,
-                  "key": "timezone",
-                  "value": "GMT",
-                  "description": "Timezone for date formatting."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<integer>",
-                  "description": "Offset for action pagination within the job."
-                },
-                {
-                  "disabled": false,
-                  "key": "len",
-                  "value": "<integer>",
-                  "description": "Number of actions to return."
-                },
-                {
-                  "disabled": false,
-                  "key": "format",
-                  "value": "<string>",
-                  "description": "Graph format (only when show=graph)."
-                },
-                {
-                  "disabled": false,
-                  "key": "logfilter",
-                  "value": "<string>",
-                  "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "job-id",
-                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "job",
+          "item": [
             {
-              "id": "213136d6-c4e9-4e95-89a2-612442dbb8cc",
-              "name": "Job information, definition, log, or graph.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "logfilter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{job-id}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Apache Oozie Get Job Info",
+                  "id": "7f12a22b-7f1c-4a40-8efa-7b8f24f24af6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/job/:job-id?show=info&timezone=GMT&offset=<integer>&len=<integer>&format=png&logfilter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "job",
+                        ":job-id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of information to return.",
+                          "key": "show",
+                          "value": "info"
+                        },
+                        {
+                          "description": "Timezone for date formatting.",
+                          "key": "timezone",
+                          "value": "GMT"
+                        },
+                        {
+                          "description": "Offset for action pagination within the job.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of actions to return.",
+                          "key": "len",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Graph format (only when show=graph).",
+                          "key": "format",
+                          "value": "png"
+                        },
+                        {
+                          "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs.",
+                          "key": "logfilter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "82557034-51cd-49da-bef3-ad746b3be1ad",
+                          "key": "job-id",
+                          "value": "<string>",
+                          "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                        }
+                      ]
+                    },
+                    "description": "Returns information, definition, logs, or graph for a specific job. Use the show parameter to control response type: info (default), definition, log, graph."
+                  },
+                  "response": [
+                    {
+                      "id": "b21d15df-f292-43ab-adff-429f13ea8fdf",
+                      "name": "Job information, definition, log, or graph.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?show=info&timezone=GMT&offset=<integer>&len=<integer>&format=png&logfilter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "GMT"
+                            },
+                            {
+                              "description": "Offset for action pagination within the job.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of actions to return.",
+                              "key": "len",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Graph format (only when show=graph).",
+                              "key": "format",
+                              "value": "png"
+                            },
+                            {
+                              "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs.",
+                              "key": "logfilter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"appName\": \"<string>\",\n  \"appPath\": \"<string>\",\n  \"status\": \"<string>\",\n  \"user\": \"<string>\",\n  \"group\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastModTime\": \"<dateTime>\",\n  \"createdTime\": \"<dateTime>\",\n  \"run\": \"<integer>\",\n  \"actions\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-b21d15df-f292-43ab-adff-429f13ea8fdf"
+                    },
+                    {
+                      "id": "515cd9cc-0d61-45a4-81bf-8771953dc8b5",
+                      "name": "Bad request - invalid parameters or configuration.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?show=info&timezone=GMT&offset=<integer>&len=<integer>&format=png&logfilter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "GMT"
+                            },
+                            {
+                              "description": "Offset for action pagination within the job.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of actions to return.",
+                              "key": "len",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Graph format (only when show=graph).",
+                              "key": "format",
+                              "value": "png"
+                            },
+                            {
+                              "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs.",
+                              "key": "logfilter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-515cd9cc-0d61-45a4-81bf-8771953dc8b5"
+                    },
+                    {
+                      "id": "9498a1be-5893-4c5f-a811-b50fd7ac3a18",
+                      "name": "Job or resource not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?show=info&timezone=GMT&offset=<integer>&len=<integer>&format=png&logfilter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "GMT"
+                            },
+                            {
+                              "description": "Offset for action pagination within the job.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of actions to return.",
+                              "key": "len",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Graph format (only when show=graph).",
+                              "key": "format",
+                              "value": "png"
+                            },
+                            {
+                              "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs.",
+                              "key": "logfilter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-9498a1be-5893-4c5f-a811-b50fd7ac3a18"
+                    },
+                    {
+                      "id": "0a307085-e493-4bb2-b5e0-2d3dcdad4d18",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?show=info&timezone=GMT&offset=<integer>&len=<integer>&format=png&logfilter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "GMT"
+                            },
+                            {
+                              "description": "Offset for action pagination within the job.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of actions to return.",
+                              "key": "len",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Graph format (only when show=graph).",
+                              "key": "format",
+                              "value": "png"
+                            },
+                            {
+                              "description": "Log filter (only when show=log) as semicolon-delimited key=value pairs.",
+                              "key": "logfilter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-0a307085-e493-4bb2-b5e0-2d3dcdad4d18"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:54.000Z",
+                  "updatedAt": "2026-10-22T01:18:54.000Z",
+                  "uid": "35240-7f12a22b-7f1c-4a40-8efa-7b8f24f24af6"
+                },
+                {
+                  "name": "Apache Oozie Manage Job",
+                  "id": "91608f32-c427-456a-a483-dcdefd88822e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/job/:job-id?action=ignore&value=<string>&type=action&scope=<string>&refresh=<boolean>&nocleanup=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "job",
+                        ":job-id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Action to apply to the job.",
+                          "key": "action",
+                          "value": "ignore"
+                        },
+                        {
+                          "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions.",
+                          "key": "value",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Rerun type (action or date) for coord-rerun action.",
+                          "key": "type",
+                          "value": "action"
+                        },
+                        {
+                          "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type).",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Whether to refresh coordinator configuration on rerun.",
+                          "key": "refresh",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Whether to skip cleanup of workflow output directories on rerun.",
+                          "key": "nocleanup",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "17c1f19f-5360-4816-b626-903a98c9e726",
+                          "key": "job-id",
+                          "value": "<string>",
+                          "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                        }
+                      ]
+                    },
+                    "description": "Apply a management action to a specific job. Supported actions: start, suspend, resume, kill, dryrun, rerun, coord-rerun, bundle-rerun, change, ignore, sla-change, sla-disable, sla-enable."
+                  },
+                  "response": [
+                    {
+                      "id": "e9d25f43-0509-4c21-994f-8fb169bf2904",
+                      "name": "Action applied successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?action=ignore&value=<string>&type=action&scope=<string>&refresh=<boolean>&nocleanup=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Rerun type (action or date) for coord-rerun action.",
+                              "key": "type",
+                              "value": "action"
+                            },
+                            {
+                              "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether to refresh coordinator configuration on rerun.",
+                              "key": "refresh",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Whether to skip cleanup of workflow output directories on rerun.",
+                              "key": "nocleanup",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-e9d25f43-0509-4c21-994f-8fb169bf2904"
+                    },
+                    {
+                      "id": "d4e7cc55-9ce1-46c9-852e-d215f136e305",
+                      "name": "Bad request - invalid parameters or configuration.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?action=ignore&value=<string>&type=action&scope=<string>&refresh=<boolean>&nocleanup=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Rerun type (action or date) for coord-rerun action.",
+                              "key": "type",
+                              "value": "action"
+                            },
+                            {
+                              "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether to refresh coordinator configuration on rerun.",
+                              "key": "refresh",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Whether to skip cleanup of workflow output directories on rerun.",
+                              "key": "nocleanup",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-d4e7cc55-9ce1-46c9-852e-d215f136e305"
+                    },
+                    {
+                      "id": "cb7e8cd4-dca6-4a3d-8fb7-49e19e2f2374",
+                      "name": "Job or resource not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?action=ignore&value=<string>&type=action&scope=<string>&refresh=<boolean>&nocleanup=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Rerun type (action or date) for coord-rerun action.",
+                              "key": "type",
+                              "value": "action"
+                            },
+                            {
+                              "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether to refresh coordinator configuration on rerun.",
+                              "key": "refresh",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Whether to skip cleanup of workflow output directories on rerun.",
+                              "key": "nocleanup",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-cb7e8cd4-dca6-4a3d-8fb7-49e19e2f2374"
+                    },
+                    {
+                      "id": "e8e9c5b2-380e-4616-a1af-7ca2509925b7",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/job/:job-id?action=ignore&value=<string>&type=action&scope=<string>&refresh=<boolean>&nocleanup=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Rerun type (action or date) for coord-rerun action.",
+                              "key": "type",
+                              "value": "action"
+                            },
+                            {
+                              "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Whether to refresh coordinator configuration on rerun.",
+                              "key": "refresh",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Whether to skip cleanup of workflow output directories on rerun.",
+                              "key": "nocleanup",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-e8e9c5b2-380e-4616-a1af-7ca2509925b7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:54.000Z",
+                  "updatedAt": "2026-10-22T01:18:54.000Z",
+                  "uid": "35240-91608f32-c427-456a-a483-dcdefd88822e"
                 }
               ],
-              "body": "{\n  \"id\": \"0000001-200101120000000-oozie-admin-W\",\n  \"appName\": \"my-workflow\",\n  \"status\": \"RUNNING\",\n  \"user\": \"admin\",\n  \"group\": \"users\",\n  \"startTime\": \"2021-01-01T12:00:00.000Z\",\n  \"endTime\": null,\n  \"actions\": []\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f612c83c-ad8c-4233-bc81-959167c05bfa",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "logfilter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5e6dd68b-136b-46d4-a856-0297b02479a9",
-              "name": "Job or resource not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "logfilter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bb92fd94-1473-4113-86d5-d5958b1f4576",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "format",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "logfilter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "546312bd-87e5-40cc-884d-10541fad24c3",
+              "createdAt": "2026-10-22T01:18:54.000Z",
+              "updatedAt": "2026-10-22T01:18:54.000Z",
+              "uid": "35240-546312bd-87e5-40cc-884d-10541fad24c3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "69c03b2d-1818-4113-b26f-e2fcdf7b8c78",
-          "name": "Apache Oozie Manage Job",
-          "request": {
-            "name": "Apache Oozie Manage Job",
-            "description": {
-              "content": "Apply a management action to a specific job. Supported actions: start, suspend, resume, kill, dryrun, rerun, coord-rerun, bundle-rerun, change, ignore, sla-change, sla-disable, sla-enable.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "job",
-                ":job-id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "action",
-                  "value": "<string>",
-                  "description": "(Required) Action to apply to the job."
-                },
-                {
-                  "disabled": false,
-                  "key": "value",
-                  "value": "<string>",
-                  "description": "Value parameter for change/sla-change/sla-disable/sla-enable actions."
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Rerun type (action or date) for coord-rerun action."
-                },
-                {
-                  "disabled": false,
-                  "key": "scope",
-                  "value": "<string>",
-                  "description": "Scope of actions to rerun (e.g., 1-2 for action range, date range for date type)."
-                },
-                {
-                  "disabled": false,
-                  "key": "refresh",
-                  "value": "<boolean>",
-                  "description": "Whether to refresh coordinator configuration on rerun."
-                },
-                {
-                  "disabled": false,
-                  "key": "nocleanup",
-                  "value": "<boolean>",
-                  "description": "Whether to skip cleanup of workflow output directories on rerun."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "job-id",
-                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/xml"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-              "options": {
-                "raw": {
-                  "language": "xml"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "826ac7a8-26fc-4dc9-b179-e175ad613401",
-              "name": "Action applied successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "start"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "refresh",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "nocleanup",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c048e87c-6c69-464c-88bc-9773bc40a8c8",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "start"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "refresh",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "nocleanup",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0533fe95-4932-438b-b050-f93bab38e493",
-              "name": "Job or resource not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "start"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "refresh",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "nocleanup",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "88be5b49-60f8-42a7-bf91-b35453759306",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "start"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "refresh",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "nocleanup",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e8229df7-681e-4436-b9a1-b074a1608dc5",
-          "name": "Apache Oozie Get Job Info v2",
-          "request": {
-            "name": "Apache Oozie Get Job Info v2",
-            "description": {
-              "content": "Version 2 of job information retrieval. Supports additional show options: errorlog, auditlog, status, jmstopic, retries, allruns, missing-dependencies.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "job",
-                ":job-id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "show",
-                  "value": "info",
-                  "description": "Type of information to return."
-                },
-                {
-                  "disabled": false,
-                  "key": "timezone",
-                  "value": "<string>",
-                  "description": "Timezone for date formatting."
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Filter type for allruns (action)."
-                },
-                {
-                  "disabled": false,
-                  "key": "action-list",
-                  "value": "<string>",
-                  "description": "Comma-separated action IDs for missing-dependencies or SLA operations."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "job-id",
-                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "262e7b6e-9e4f-4ee2-8609-f94cc7351e4a",
-              "name": "Job information in the requested format.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"0000001-200101120000000-oozie-admin-C\",\n  \"appName\": \"my-coordinator\",\n  \"status\": \"RUNNING\",\n  \"user\": \"admin\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b547018f-08f1-4fed-8a89-77d36c842625",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9d8ecce9-d495-45c4-a515-b9b67d296740",
-              "name": "Job or resource not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "55ff2fce-6274-4e20-8680-5bce472e4bad",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "show",
-                      "value": "info"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ea9a52e9-3cf7-444c-a972-2c26155b8f45",
-          "name": "Apache Oozie Manage Job v2",
-          "request": {
-            "name": "Apache Oozie Manage Job v2",
-            "description": {
-              "content": "Version 2 of job management. Supports additional actions: update (coordinator definition update), ignore, sla-change, sla-disable, sla-enable.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "job",
-                ":job-id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "action",
-                  "value": "<string>",
-                  "description": "(Required) Action to apply to the job."
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Ignore type (action)."
-                },
-                {
-                  "disabled": false,
-                  "key": "scope",
-                  "value": "<string>",
-                  "description": "Scope of actions to ignore (e.g., 3-4)."
-                },
-                {
-                  "disabled": false,
-                  "key": "value",
-                  "value": "<string>",
-                  "description": "SLA change value as key=value pairs."
-                },
-                {
-                  "disabled": false,
-                  "key": "action-list",
-                  "value": "<string>",
-                  "description": "Comma-separated action list for SLA enable/disable."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "job-id",
-                  "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/xml"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-              "options": {
-                "raw": {
-                  "language": "xml"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d200af98-b2c4-4bf2-ac65-0a40f3522e85",
-              "name": "Action applied successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "9695dcb3-0cc6-41a3-9b7a-a1c4c82bb469",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f0b964f9-e1bf-4bd0-82e0-27fcf6a461df",
-              "name": "Job or resource not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "05556f7c-27df-4708-bb11-1fca901f6d10",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "job",
-                    ":job-id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "value",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "action-list",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "job-id",
-                      "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e7a53b4e-a77a-4a58-bfce-142405d587b1",
+          "createdAt": "2026-10-22T01:18:54.000Z",
+          "updatedAt": "2026-10-22T01:18:54.000Z",
+          "uid": "35240-e7a53b4e-a77a-4a58-bfce-142405d587b1"
         }
       ],
-      "event": []
+      "id": "3979373e-5fb0-4a78-a0b7-55ec40001fb3",
+      "createdAt": "2026-10-22T01:18:54.000Z",
+      "updatedAt": "2026-10-22T01:18:54.000Z",
+      "uid": "35240-3979373e-5fb0-4a78-a0b7-55ec40001fb3"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "job",
+          "item": [
+            {
+              "name": "{job-id}",
+              "item": [
+                {
+                  "name": "Apache Oozie Get Job Info v2",
+                  "id": "2b73a842-b7a4-452a-b6f2-306fdc1744e4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/job/:job-id?show=info&timezone=<string>&type=<string>&action-list=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "job",
+                        ":job-id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of information to return.",
+                          "key": "show",
+                          "value": "info"
+                        },
+                        {
+                          "description": "Timezone for date formatting.",
+                          "key": "timezone",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter type for allruns (action).",
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated action IDs for missing-dependencies or SLA operations.",
+                          "key": "action-list",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2c7ac9c8-a6d6-47fe-ba9e-6ef4dd2b7df6",
+                          "key": "job-id",
+                          "value": "<string>",
+                          "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                        }
+                      ]
+                    },
+                    "description": "Version 2 of job information retrieval. Supports additional show options: errorlog, auditlog, status, jmstopic, retries, allruns, missing-dependencies."
+                  },
+                  "response": [
+                    {
+                      "id": "799ab8be-54e6-4888-825c-ee751c8c3a00",
+                      "name": "Job information in the requested format.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?show=info&timezone=<string>&type=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter type for allruns (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action IDs for missing-dependencies or SLA operations.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"appName\": \"<string>\",\n  \"appPath\": \"<string>\",\n  \"status\": \"<string>\",\n  \"user\": \"<string>\",\n  \"group\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastModTime\": \"<dateTime>\",\n  \"createdTime\": \"<dateTime>\",\n  \"run\": \"<integer>\",\n  \"actions\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"errorCode\": \"<string>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-799ab8be-54e6-4888-825c-ee751c8c3a00"
+                    },
+                    {
+                      "id": "db5d9806-e680-4ea3-8ef1-77703382a77f",
+                      "name": "Bad request - invalid parameters or configuration.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?show=info&timezone=<string>&type=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter type for allruns (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action IDs for missing-dependencies or SLA operations.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-db5d9806-e680-4ea3-8ef1-77703382a77f"
+                    },
+                    {
+                      "id": "3722aa40-d85c-4f91-9a8e-3eb15ef819d5",
+                      "name": "Job or resource not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?show=info&timezone=<string>&type=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter type for allruns (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action IDs for missing-dependencies or SLA operations.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-3722aa40-d85c-4f91-9a8e-3eb15ef819d5"
+                    },
+                    {
+                      "id": "c6016a86-2057-4b3c-96d6-5080dd543dd7",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?show=info&timezone=<string>&type=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of information to return.",
+                              "key": "show",
+                              "value": "info"
+                            },
+                            {
+                              "description": "Timezone for date formatting.",
+                              "key": "timezone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter type for allruns (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action IDs for missing-dependencies or SLA operations.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-c6016a86-2057-4b3c-96d6-5080dd543dd7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:54.000Z",
+                  "updatedAt": "2026-10-22T01:18:54.000Z",
+                  "uid": "35240-2b73a842-b7a4-452a-b6f2-306fdc1744e4"
+                },
+                {
+                  "name": "Apache Oozie Manage Job v2",
+                  "id": "ee59bdff-e89f-4646-ac58-6cde1e487d45",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/job/:job-id?action=ignore&type=<string>&scope=<string>&value=<string>&action-list=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "job",
+                        ":job-id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Action to apply to the job.",
+                          "key": "action",
+                          "value": "ignore"
+                        },
+                        {
+                          "description": "Ignore type (action).",
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Scope of actions to ignore (e.g., 3-4).",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "SLA change value as key=value pairs.",
+                          "key": "value",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated action list for SLA enable/disable.",
+                          "key": "action-list",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "233cddd4-1ffc-4293-b504-09cf97d1b274",
+                          "key": "job-id",
+                          "value": "<string>",
+                          "description": "(Required) The Oozie job identifier (workflow, coordinator, bundle, or action ID)."
+                        }
+                      ]
+                    },
+                    "description": "Version 2 of job management. Supports additional actions: update (coordinator definition update), ignore, sla-change, sla-disable, sla-enable."
+                  },
+                  "response": [
+                    {
+                      "id": "a644b7ae-7b32-43e8-b03f-08f63860dcf7",
+                      "name": "Action applied successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?action=ignore&type=<string>&scope=<string>&value=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Ignore type (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Scope of actions to ignore (e.g., 3-4).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "SLA change value as key=value pairs.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action list for SLA enable/disable.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-a644b7ae-7b32-43e8-b03f-08f63860dcf7"
+                    },
+                    {
+                      "id": "c962de3d-cce6-4f12-9a57-afda34b13d63",
+                      "name": "Bad request - invalid parameters or configuration.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?action=ignore&type=<string>&scope=<string>&value=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Ignore type (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Scope of actions to ignore (e.g., 3-4).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "SLA change value as key=value pairs.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action list for SLA enable/disable.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-c962de3d-cce6-4f12-9a57-afda34b13d63"
+                    },
+                    {
+                      "id": "9a075278-8537-454a-8c1d-bafa63c3538b",
+                      "name": "Job or resource not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?action=ignore&type=<string>&scope=<string>&value=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Ignore type (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Scope of actions to ignore (e.g., 3-4).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "SLA change value as key=value pairs.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action list for SLA enable/disable.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-9a075278-8537-454a-8c1d-bafa63c3538b"
+                    },
+                    {
+                      "id": "907a278c-d74a-4ddf-af97-32b8f3f1974a",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/xml"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "xml",
+                              "language": "xml"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/job/:job-id?action=ignore&type=<string>&scope=<string>&value=<string>&action-list=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "job",
+                            ":job-id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Action to apply to the job.",
+                              "key": "action",
+                              "value": "ignore"
+                            },
+                            {
+                              "description": "Ignore type (action).",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Scope of actions to ignore (e.g., 3-4).",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "SLA change value as key=value pairs.",
+                              "key": "value",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated action list for SLA enable/disable.",
+                              "key": "action-list",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "job-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:54.000Z",
+                      "updatedAt": "2026-10-22T01:18:54.000Z",
+                      "uid": "35240-907a278c-d74a-4ddf-af97-32b8f3f1974a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:54.000Z",
+                  "updatedAt": "2026-10-22T01:18:54.000Z",
+                  "uid": "35240-ee59bdff-e89f-4646-ac58-6cde1e487d45"
+                }
+              ],
+              "id": "1664a196-cc1b-4e76-9082-e05c2f64a569",
+              "createdAt": "2026-10-22T01:18:54.000Z",
+              "updatedAt": "2026-10-22T01:18:54.000Z",
+              "uid": "35240-1664a196-cc1b-4e76-9082-e05c2f64a569"
+            }
+          ],
+          "id": "09841ae1-7426-4c1d-aa4b-46a275cce90a",
+          "createdAt": "2026-10-22T01:18:54.000Z",
+          "updatedAt": "2026-10-22T01:18:54.000Z",
+          "uid": "35240-09841ae1-7426-4c1d-aa4b-46a275cce90a"
+        }
+      ],
+      "id": "6a1b743e-09af-43bc-8873-1d06789e6bff",
+      "createdAt": "2026-10-22T01:18:54.000Z",
+      "updatedAt": "2026-10-22T01:18:54.000Z",
+      "uid": "35240-6a1b743e-09af-43bc-8873-1d06789e6bff"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "http://localhost:11000/oozie",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "http://localhost:11000/oozie"
     }
-  ],
-  "info": {
-    "_postman_id": "a25d8003-36e6-4a78-9695-6d45634f6b2f",
-    "name": "Apache Oozie REST Admin Job API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

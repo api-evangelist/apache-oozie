@@ -1,944 +1,1054 @@
 {
+  "info": {
+    "_postman_id": "e940d618-ff14-489d-af78-a979a1e72f3c",
+    "name": "Apache Oozie REST Jobs API",
+    "description": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:59.000Z",
+    "updatedAt": "2026-10-22T01:19:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e940d618-ff14-489d-af78-a979a1e72f3c"
+  },
   "item": [
     {
-      "id": "339b3f81-202a-4dbe-aa5d-48be58dce679",
-      "name": "Jobs",
-      "description": {
-        "content": "Job submission and bulk management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "c4ccc655-a78b-49f5-861d-6d7b7d1824d6",
-          "name": "Apache Oozie Submit a Job",
-          "request": {
-            "name": "Apache Oozie Submit a Job",
-            "description": {
-              "content": "Submit a workflow, coordinator, or bundle job using an XML configuration payload. Use the action=start query parameter to submit and immediately start the job. Use jobtype for proxy submissions (mapreduce, pig, hive, sqoop) without a workflow XML.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "jobs"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "action",
-                  "value": "<string>",
-                  "description": "Set to \"start\" to immediately start the submitted job."
-                },
-                {
-                  "disabled": false,
-                  "key": "jobtype",
-                  "value": "<string>",
-                  "description": "Job type for proxy submissions without a workflow XML."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/xml"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-              "options": {
-                "raw": {
-                  "language": "xml"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "jobs",
+          "item": [
             {
-              "id": "0f777cc6-0c6b-4c80-ba7c-00627c90f2b9",
-              "name": "Job submitted successfully. Returns the job ID.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
+              "name": "Apache Oozie Submit a Job",
+              "id": "5c8d456b-ac98-44e5-923a-ad5373196f93",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element><configuration>\n  <property>\n    <name>user.name</name>\n    <value>admin</value>\n  </property>\n  <property>\n    <name>oozie.wf.application.path</name>\n    <value>hdfs://localhost:8020/user/admin/workflow</value>\n  </property>\n</configuration>\n</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"0000001-200101120000000-oozie-admin-W\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9c71c45a-16c9-458e-bd87-505781ba0aed",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element><configuration>\n  <property>\n    <name>user.name</name>\n    <value>admin</value>\n  </property>\n  <property>\n    <name>oozie.wf.application.path</name>\n    <value>hdfs://localhost:8020/user/admin/workflow</value>\n  </property>\n</configuration>\n</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f9f49a40-dead-423d-9a2a-efdb6d096915",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element><configuration>\n  <property>\n    <name>user.name</name>\n    <value>admin</value>\n  </property>\n  <property>\n    <name>oozie.wf.application.path</name>\n    <value>hdfs://localhost:8020/user/admin/workflow</value>\n  </property>\n</configuration>\n</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0ca0731f-7092-4509-8bcd-405f9d0468fa",
-          "name": "Apache Oozie List Jobs",
-          "request": {
-            "name": "Apache Oozie List Jobs",
-            "description": {
-              "content": "Returns a list of jobs matching the specified filters with pagination support.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "jobs"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING)."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "1",
-                  "description": "Pagination offset, 1-based."
-                },
-                {
-                  "disabled": false,
-                  "key": "len",
-                  "value": "50",
-                  "description": "Maximum number of jobs to return."
-                },
-                {
-                  "disabled": false,
-                  "key": "timezone",
-                  "value": "GMT",
-                  "description": "Timezone for date formatting in response."
-                },
-                {
-                  "disabled": false,
-                  "key": "jobtype",
-                  "value": "<string>",
-                  "description": "Filter by job type (wf, coordinator, bundle)."
-                },
-                {
-                  "disabled": false,
-                  "key": "bulk",
-                  "value": "<string>",
-                  "description": "Bulk filter for coordinator action status queries."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8b865de5-fdf5-493c-9a09-96396b29a07f",
-              "name": "List of matching jobs.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "filter",
-                      "value": "user%3Dadmin%3Bstatus%3DRUNNING"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "1"
-                    },
-                    {
-                      "key": "len",
-                      "value": "50"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "bulk",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"offset\": 1,\n  \"len\": 50,\n  \"total\": 2,\n  \"workflows\": [\n    {\n      \"id\": \"0000001-200101120000000-oozie-admin-W\",\n      \"appName\": \"my-workflow\",\n      \"status\": \"RUNNING\",\n      \"user\": \"admin\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e309c49b-220d-4ca4-9af2-f0030ee8da24",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "filter",
-                      "value": "user%3Dadmin%3Bstatus%3DRUNNING"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "1"
-                    },
-                    {
-                      "key": "len",
-                      "value": "50"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "bulk",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6fd17ee1-e129-4928-bbda-9b3dbcd1be70",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "filter",
-                      "value": "user%3Dadmin%3Bstatus%3DRUNNING"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "1"
-                    },
-                    {
-                      "key": "len",
-                      "value": "50"
-                    },
-                    {
-                      "key": "timezone",
-                      "value": "GMT"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "bulk",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7b0c5d78-f984-4249-804a-897054299f10",
-          "name": "Apache Oozie Bulk Job Action",
-          "request": {
-            "name": "Apache Oozie Bulk Job Action",
-            "description": {
-              "content": "Apply an action (kill, suspend, resume) to multiple jobs matching filter criteria.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "jobs"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "action",
-                  "value": "<string>",
-                  "description": "(Required) Action to apply to matching jobs."
-                },
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "Filter criteria for selecting target jobs."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<integer>",
-                  "description": "Pagination offset."
-                },
-                {
-                  "disabled": false,
-                  "key": "len",
-                  "value": "<integer>",
-                  "description": "Maximum number of jobs to affect."
-                },
-                {
-                  "disabled": false,
-                  "key": "jobtype",
-                  "value": "<string>",
-                  "description": "Job type to filter by."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "24b1ab15-a59f-4fe9-b7d4-0c8d095f12eb",
-              "name": "Bulk action applied successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "4f49c282-abdf-49aa-b649-a91d5bb7e691",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6366c77a-ec27-48df-9f19-2f0582b20768",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "jobs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "action",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "len",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "jobtype",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "daa45ea8-9dca-4c23-845d-9ebb54902c0f",
-          "name": "Apache Oozie Validate Workflow XML",
-          "request": {
-            "name": "Apache Oozie Validate Workflow XML",
-            "description": {
-              "content": "Validates a workflow, coordinator, or bundle XML definition from the local filesystem or HDFS. The file path is provided as a query parameter and the XML content in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "validate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "file",
-                  "value": "<string>",
-                  "description": "(Required) Local or HDFS path to the XML file to validate."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/xml"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-              "options": {
-                "raw": {
-                  "language": "xml"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8f266ec0-69b4-474a-ad04-4c08329f6310",
-              "name": "XML validation result.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "file",
-                      "value": "hdfs://localhost:8020/user/admin/myApp/workflow.xml"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
                   "options": {
                     "raw": {
+                      "headerFamily": "xml",
                       "language": "xml"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"validate\": {\n    \"status\": \"valid\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "101e864f-c1fb-44b3-b5ef-4bdc808bc6a0",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v2",
-                    "validate"
-                  ],
+                  "raw": "{{baseUrl}}/v1/jobs?action=start&jobtype=hive",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
                   "query": [
                     {
-                      "key": "file",
-                      "value": "hdfs://localhost:8020/user/admin/myApp/workflow.xml"
+                      "description": "Set to \"start\" to immediately start the submitted job.",
+                      "key": "action",
+                      "value": "start"
+                    },
+                    {
+                      "description": "Job type for proxy submissions without a workflow XML.",
+                      "key": "jobtype",
+                      "value": "hive"
+                    }
+                  ]
+                },
+                "description": "Submit a workflow, coordinator, or bundle job using an XML configuration payload. Use the action=start query parameter to submit and immediately start the job. Use jobtype for proxy submissions (mapreduce, pig, hive, sqoop) without a workflow XML."
+              },
+              "response": [
+                {
+                  "id": "8f4be9ba-30d7-48e6-9c50-a5e923beeee5",
+                  "name": "Job submitted successfully. Returns the job ID.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?action=start&jobtype=hive",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to \"start\" to immediately start the submitted job.",
+                          "key": "action",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Job type for proxy submissions without a workflow XML.",
+                          "key": "jobtype",
+                          "value": "hive"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-8f4be9ba-30d7-48e6-9c50-a5e923beeee5"
                 },
+                {
+                  "id": "f3bf0026-db90-4fa1-bbde-448890c42069",
+                  "name": "Bad request - invalid parameters or configuration.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?action=start&jobtype=hive",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to \"start\" to immediately start the submitted job.",
+                          "key": "action",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Job type for proxy submissions without a workflow XML.",
+                          "key": "jobtype",
+                          "value": "hive"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-f3bf0026-db90-4fa1-bbde-448890c42069"
+                },
+                {
+                  "id": "ff6e785e-7c22-4f40-a10d-405b1271d8ca",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?action=start&jobtype=hive",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Set to \"start\" to immediately start the submitted job.",
+                          "key": "action",
+                          "value": "start"
+                        },
+                        {
+                          "description": "Job type for proxy submissions without a workflow XML.",
+                          "key": "jobtype",
+                          "value": "hive"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-ff6e785e-7c22-4f40-a10d-405b1271d8ca"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:00.000Z",
+              "updatedAt": "2026-10-22T01:19:00.000Z",
+              "uid": "35240-5c8d456b-ac98-44e5-923a-ad5373196f93"
+            },
+            {
+              "name": "Apache Oozie List Jobs",
+              "id": "fd0b256c-5718-4836-8ca0-1c5951735b8e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ea8b0a23-69e1-4c72-9110-ca00977f6ee7",
-              "name": "Internal server error.",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "v2",
-                    "validate"
-                  ],
+                  "raw": "{{baseUrl}}/v1/jobs?filter=<string>&offset=1&len=50&timezone=GMT&jobtype=bundle&bulk=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
                   "query": [
                     {
-                      "key": "file",
-                      "value": "hdfs://localhost:8020/user/admin/myApp/workflow.xml"
+                      "description": "Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING).",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset, 1-based.",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Maximum number of jobs to return.",
+                      "key": "len",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Timezone for date formatting in response.",
+                      "key": "timezone",
+                      "value": "GMT"
+                    },
+                    {
+                      "description": "Filter by job type (wf, coordinator, bundle).",
+                      "key": "jobtype",
+                      "value": "bundle"
+                    },
+                    {
+                      "description": "Bulk filter for coordinator action status queries.",
+                      "key": "bulk",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of jobs matching the specified filters with pagination support."
+              },
+              "response": [
+                {
+                  "id": "e482a27e-9d49-4667-aed8-552c55d604ba",
+                  "name": "List of matching jobs.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?filter=<string>&offset=1&len=50&timezone=GMT&jobtype=bundle&bulk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING).",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination offset, 1-based.",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Maximum number of jobs to return.",
+                          "key": "len",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Timezone for date formatting in response.",
+                          "key": "timezone",
+                          "value": "GMT"
+                        },
+                        {
+                          "description": "Filter by job type (wf, coordinator, bundle).",
+                          "key": "jobtype",
+                          "value": "bundle"
+                        },
+                        {
+                          "description": "Bulk filter for coordinator action status queries.",
+                          "key": "bulk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"offset\": \"<integer>\",\n  \"len\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"workflows\": [\n    {\n      \"id\": \"<string>\",\n      \"appName\": \"<string>\",\n      \"appPath\": \"<string>\",\n      \"status\": \"<string>\",\n      \"user\": \"<string>\",\n      \"group\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"lastModTime\": \"<dateTime>\",\n      \"createdTime\": \"<dateTime>\",\n      \"run\": \"<integer>\",\n      \"actions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"appName\": \"<string>\",\n      \"appPath\": \"<string>\",\n      \"status\": \"<string>\",\n      \"user\": \"<string>\",\n      \"group\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"lastModTime\": \"<dateTime>\",\n      \"createdTime\": \"<dateTime>\",\n      \"run\": \"<integer>\",\n      \"actions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"coordinatorjobs\": [\n    {\n      \"id\": \"<string>\",\n      \"appName\": \"<string>\",\n      \"appPath\": \"<string>\",\n      \"status\": \"<string>\",\n      \"user\": \"<string>\",\n      \"group\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"lastModTime\": \"<dateTime>\",\n      \"createdTime\": \"<dateTime>\",\n      \"run\": \"<integer>\",\n      \"actions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"appName\": \"<string>\",\n      \"appPath\": \"<string>\",\n      \"status\": \"<string>\",\n      \"user\": \"<string>\",\n      \"group\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"lastModTime\": \"<dateTime>\",\n      \"createdTime\": \"<dateTime>\",\n      \"run\": \"<integer>\",\n      \"actions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"bundlejobs\": [\n    {\n      \"id\": \"<string>\",\n      \"appName\": \"<string>\",\n      \"appPath\": \"<string>\",\n      \"status\": \"<string>\",\n      \"user\": \"<string>\",\n      \"group\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"lastModTime\": \"<dateTime>\",\n      \"createdTime\": \"<dateTime>\",\n      \"run\": \"<integer>\",\n      \"actions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"appName\": \"<string>\",\n      \"appPath\": \"<string>\",\n      \"status\": \"<string>\",\n      \"user\": \"<string>\",\n      \"group\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"endTime\": \"<dateTime>\",\n      \"lastModTime\": \"<dateTime>\",\n      \"createdTime\": \"<dateTime>\",\n      \"run\": \"<integer>\",\n      \"actions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"startTime\": \"<dateTime>\",\n          \"endTime\": \"<dateTime>\",\n          \"errorCode\": \"<string>\",\n          \"errorMessage\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-e482a27e-9d49-4667-aed8-552c55d604ba"
                 },
+                {
+                  "id": "5d9bd091-52f7-4e6c-8b6c-0617be31bd21",
+                  "name": "Bad request - invalid parameters or configuration.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?filter=<string>&offset=1&len=50&timezone=GMT&jobtype=bundle&bulk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING).",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination offset, 1-based.",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Maximum number of jobs to return.",
+                          "key": "len",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Timezone for date formatting in response.",
+                          "key": "timezone",
+                          "value": "GMT"
+                        },
+                        {
+                          "description": "Filter by job type (wf, coordinator, bundle).",
+                          "key": "jobtype",
+                          "value": "bundle"
+                        },
+                        {
+                          "description": "Bulk filter for coordinator action status queries.",
+                          "key": "bulk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-5d9bd091-52f7-4e6c-8b6c-0617be31bd21"
+                },
+                {
+                  "id": "24d9526e-bcf6-4e1f-a4ae-0c99e47f29c0",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?filter=<string>&offset=1&len=50&timezone=GMT&jobtype=bundle&bulk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter criteria as URL-encoded semicolon-delimited key=value pairs (e.g., user=admin;status=RUNNING).",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination offset, 1-based.",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Maximum number of jobs to return.",
+                          "key": "len",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Timezone for date formatting in response.",
+                          "key": "timezone",
+                          "value": "GMT"
+                        },
+                        {
+                          "description": "Filter by job type (wf, coordinator, bundle).",
+                          "key": "jobtype",
+                          "value": "bundle"
+                        },
+                        {
+                          "description": "Bulk filter for coordinator action status queries.",
+                          "key": "bulk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-24d9526e-bcf6-4e1f-a4ae-0c99e47f29c0"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:00.000Z",
+              "updatedAt": "2026-10-22T01:19:00.000Z",
+              "uid": "35240-fd0b256c-5718-4836-8ca0-1c5951735b8e"
+            },
+            {
+              "name": "Apache Oozie Bulk Job Action",
+              "id": "6075fee9-0997-493c-955a-a14e112efcd3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
-                  "options": {
-                    "raw": {
-                      "language": "xml"
+                "url": {
+                  "raw": "{{baseUrl}}/v1/jobs?action=resume&filter=<string>&offset=<integer>&len=<integer>&jobtype=bundle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Action to apply to matching jobs.",
+                      "key": "action",
+                      "value": "resume"
+                    },
+                    {
+                      "description": "Filter criteria for selecting target jobs.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum number of jobs to affect.",
+                      "key": "len",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Job type to filter by.",
+                      "key": "jobtype",
+                      "value": "bundle"
                     }
-                  }
-                }
+                  ]
+                },
+                "description": "Apply an action (kill, suspend, resume) to multiple jobs matching filter criteria."
               },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "47e0d2a5-6ab1-47f8-98aa-3c9ce651ba6a",
+                  "name": "Bulk action applied successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?action=resume&filter=<string>&offset=<integer>&len=<integer>&jobtype=bundle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Action to apply to matching jobs.",
+                          "key": "action",
+                          "value": "resume"
+                        },
+                        {
+                          "description": "Filter criteria for selecting target jobs.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination offset.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum number of jobs to affect.",
+                          "key": "len",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Job type to filter by.",
+                          "key": "jobtype",
+                          "value": "bundle"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-47e0d2a5-6ab1-47f8-98aa-3c9ce651ba6a"
+                },
+                {
+                  "id": "ee2bb468-2fb6-4b67-8783-c6a2ce277d94",
+                  "name": "Bad request - invalid parameters or configuration.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?action=resume&filter=<string>&offset=<integer>&len=<integer>&jobtype=bundle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Action to apply to matching jobs.",
+                          "key": "action",
+                          "value": "resume"
+                        },
+                        {
+                          "description": "Filter criteria for selecting target jobs.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination offset.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum number of jobs to affect.",
+                          "key": "len",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Job type to filter by.",
+                          "key": "jobtype",
+                          "value": "bundle"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-ee2bb468-2fb6-4b67-8783-c6a2ce277d94"
+                },
+                {
+                  "id": "9b27b2e9-12f0-477a-8e75-b95d24546636",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs?action=resume&filter=<string>&offset=<integer>&len=<integer>&jobtype=bundle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Action to apply to matching jobs.",
+                          "key": "action",
+                          "value": "resume"
+                        },
+                        {
+                          "description": "Filter criteria for selecting target jobs.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination offset.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum number of jobs to affect.",
+                          "key": "len",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Job type to filter by.",
+                          "key": "jobtype",
+                          "value": "bundle"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-9b27b2e9-12f0-477a-8e75-b95d24546636"
                 }
               ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:19:00.000Z",
+              "updatedAt": "2026-10-22T01:19:00.000Z",
+              "uid": "35240-6075fee9-0997-493c-955a-a14e112efcd3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "dd90f647-9186-4b88-b376-12e3d7000323",
+          "createdAt": "2026-10-22T01:19:00.000Z",
+          "updatedAt": "2026-10-22T01:19:00.000Z",
+          "uid": "35240-dd90f647-9186-4b88-b376-12e3d7000323"
         }
       ],
-      "event": []
+      "id": "e9172612-872f-4ecf-871b-dfc3a313c74c",
+      "createdAt": "2026-10-22T01:19:00.000Z",
+      "updatedAt": "2026-10-22T01:19:00.000Z",
+      "uid": "35240-e9172612-872f-4ecf-871b-dfc3a313c74c"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "validate",
+          "item": [
+            {
+              "name": "Apache Oozie Validate Workflow XML",
+              "id": "4ccc42f5-9352-4ea7-a32f-023bc5c8fd79",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "xml",
+                      "language": "xml"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/validate?file=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "validate"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Local or HDFS path to the XML file to validate.",
+                      "key": "file",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Validates a workflow, coordinator, or bundle XML definition from the local filesystem or HDFS. The file path is provided as a query parameter and the XML content in the request body."
+              },
+              "response": [
+                {
+                  "id": "a24ec661-ef9c-4c86-b87e-aa915e09c331",
+                  "name": "XML validation result.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/validate?file=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "validate"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Local or HDFS path to the XML file to validate.",
+                          "key": "file",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"validate\": {\n    \"status\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-a24ec661-ef9c-4c86-b87e-aa915e09c331"
+                },
+                {
+                  "id": "7bcd2d08-1314-4f42-8f67-3e4b93eff4fe",
+                  "name": "Bad request - invalid parameters or configuration.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/validate?file=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "validate"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Local or HDFS path to the XML file to validate.",
+                          "key": "file",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-7bcd2d08-1314-4f42-8f67-3e4b93eff4fe"
+                },
+                {
+                  "id": "7969bd76-71e5-45c9-8d78-81dd6c5c1ed7",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "xml",
+                          "language": "xml"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/validate?file=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "validate"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Local or HDFS path to the XML file to validate.",
+                          "key": "file",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:00.000Z",
+                  "updatedAt": "2026-10-22T01:19:00.000Z",
+                  "uid": "35240-7969bd76-71e5-45c9-8d78-81dd6c5c1ed7"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:00.000Z",
+              "updatedAt": "2026-10-22T01:19:00.000Z",
+              "uid": "35240-4ccc42f5-9352-4ea7-a32f-023bc5c8fd79"
+            }
+          ],
+          "id": "88794b02-0db6-4903-a82f-9c3e39fd85b5",
+          "createdAt": "2026-10-22T01:19:00.000Z",
+          "updatedAt": "2026-10-22T01:19:00.000Z",
+          "uid": "35240-88794b02-0db6-4903-a82f-9c3e39fd85b5"
+        }
+      ],
+      "id": "8992a8d6-6bdc-4559-8983-98699817b774",
+      "createdAt": "2026-10-22T01:19:00.000Z",
+      "updatedAt": "2026-10-22T01:19:00.000Z",
+      "uid": "35240-8992a8d6-6bdc-4559-8983-98699817b774"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "http://localhost:11000/oozie",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "http://localhost:11000/oozie"
     }
-  ],
-  "info": {
-    "_postman_id": "6fa4e362-9b8b-43a3-babd-713116a44b58",
-    "name": "Apache Oozie REST Admin Jobs API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

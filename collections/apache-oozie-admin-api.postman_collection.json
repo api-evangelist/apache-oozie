@@ -1,862 +1,944 @@
 {
+  "info": {
+    "_postman_id": "098d58de-61d9-456f-8d70-b681d7173289",
+    "name": "Apache Oozie REST Admin API",
+    "description": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:48.000Z",
+    "updatedAt": "2026-10-22T01:18:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-098d58de-61d9-456f-8d70-b681d7173289"
+  },
   "item": [
     {
-      "id": "b1323e7c-803e-4565-b576-0f6f5c4c1d75",
-      "name": "Admin",
-      "description": {
-        "content": "System administration, configuration, and monitoring",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "b509d974-1f98-48c2-a8b2-acd212df2530",
-          "name": "Apache Oozie Get System Status",
-          "request": {
-            "name": "Apache Oozie Get System Status",
-            "description": {
-              "content": "Returns the current Oozie system mode (NORMAL, NOWEBSERVICE, or SAFEMODE).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "admin",
-                "status"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "admin",
+          "item": [
             {
-              "id": "354b2cf8-1872-4530-bc65-fc62a1f242d8",
-              "name": "Current system status.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "status",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"systemMode\": \"NORMAL\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b33eb665-a675-47a9-8af8-b5be1a18bf61",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "35eecf67-7c23-4bb3-a415-042e47cd5225",
-          "name": "Apache Oozie Change System Status",
-          "request": {
-            "name": "Apache Oozie Change System Status",
-            "description": {
-              "content": "Changes the Oozie system mode. Valid values are NORMAL, NOWEBSERVICE, and SAFEMODE.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "admin",
-                "status"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "systemmode",
-                  "value": "<string>",
-                  "description": "(Required) The new system mode to set."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c772118d-58a5-44d1-b583-4089472dd34f",
-              "name": "System mode changed successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "name": "Apache Oozie Get System Status",
+                  "id": "531ad97c-167e-4f22-b017-2f2c3bcba21e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/admin/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "admin",
+                        "status"
+                      ]
+                    },
+                    "description": "Returns the current Oozie system mode (NORMAL, NOWEBSERVICE, or SAFEMODE)."
+                  },
+                  "response": [
                     {
-                      "key": "systemmode",
-                      "value": "SAFEMODE"
+                      "id": "981c3e11-0b80-4887-9373-a068495e64c8",
+                      "name": "Current system status.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "status"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"systemMode\": \"NOWEBSERVICE\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-981c3e11-0b80-4887-9373-a068495e64c8"
+                    },
+                    {
+                      "id": "2b6758c2-6b54-4102-bb55-5cb32b2d3eb8",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "status"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-2b6758c2-6b54-4102-bb55-5cb32b2d3eb8"
                     }
                   ],
-                  "variable": []
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-531ad97c-167e-4f22-b017-2f2c3bcba21e"
                 },
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5ea07700-97b7-4d8e-8ae0-5abae6d226e1",
-              "name": "Bad request - invalid parameters or configuration.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "name": "Apache Oozie Change System Status",
+                  "id": "3bbe0bd6-24f9-4933-a55a-421220274bd4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/admin/status?systemmode=SAFEMODE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "admin",
+                        "status"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The new system mode to set.",
+                          "key": "systemmode",
+                          "value": "SAFEMODE"
+                        }
+                      ]
+                    },
+                    "description": "Changes the Oozie system mode. Valid values are NORMAL, NOWEBSERVICE, and SAFEMODE."
+                  },
+                  "response": [
                     {
-                      "key": "systemmode",
-                      "value": "SAFEMODE"
+                      "id": "b73b30d9-5bd0-499e-b77d-132dbf5b854f",
+                      "name": "System mode changed successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/status?systemmode=SAFEMODE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "status"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The new system mode to set.",
+                              "key": "systemmode",
+                              "value": "SAFEMODE"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-b73b30d9-5bd0-499e-b77d-132dbf5b854f"
+                    },
+                    {
+                      "id": "36f0fdbb-9acf-47bc-8844-8244ea3704ec",
+                      "name": "Bad request - invalid parameters or configuration.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/status?systemmode=SAFEMODE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "status"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The new system mode to set.",
+                              "key": "systemmode",
+                              "value": "SAFEMODE"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-36f0fdbb-9acf-47bc-8844-8244ea3704ec"
+                    },
+                    {
+                      "id": "f2d54424-da96-4c91-9138-934fa5e60904",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/status?systemmode=SAFEMODE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "status"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The new system mode to set.",
+                              "key": "systemmode",
+                              "value": "SAFEMODE"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-f2d54424-da96-4c91-9138-934fa5e60904"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-3bbe0bd6-24f9-4933-a55a-421220274bd4"
                 }
               ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "82d26eec-f946-4d13-b3a4-1fef65bf67e3",
+              "createdAt": "2026-10-22T01:18:48.000Z",
+              "updatedAt": "2026-10-22T01:18:48.000Z",
+              "uid": "35240-82d26eec-f946-4d13-b3a4-1fef65bf67e3"
             },
             {
-              "id": "e048a110-5ac9-4dfe-8ca7-427b73ba9588",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "status"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "os-env",
+              "item": [
+                {
+                  "name": "Apache Oozie Get OS Environment Variables",
+                  "id": "fd11fbf7-0a9e-416b-8fe6-c4100e986a0e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/admin/os-env",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "admin",
+                        "os-env"
+                      ]
+                    },
+                    "description": "Returns the operating system environment variables of the Oozie server."
+                  },
+                  "response": [
                     {
-                      "key": "systemmode",
-                      "value": "SAFEMODE"
+                      "id": "5e76b947-49ae-424f-b848-963bbf107712",
+                      "name": "OS environment variables as key-value pairs.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/os-env",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "os-env"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sint8_\": \"<string>\",\n  \"do_b\": \"<string>\",\n  \"enim_58b\": \"<string>\",\n  \"non_e\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-5e76b947-49ae-424f-b848-963bbf107712"
+                    },
+                    {
+                      "id": "68e2b5b9-bb54-4cab-a16a-fad122e36601",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/os-env",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "os-env"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-68e2b5b9-bb54-4cab-a16a-fad122e36601"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-fd11fbf7-0a9e-416b-8fe6-c4100e986a0e"
                 }
               ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "69884ae6-ce3f-47c5-8074-66a6a9a4cd69",
+              "createdAt": "2026-10-22T01:18:48.000Z",
+              "updatedAt": "2026-10-22T01:18:48.000Z",
+              "uid": "35240-69884ae6-ce3f-47c5-8074-66a6a9a4cd69"
+            },
+            {
+              "name": "configuration",
+              "item": [
+                {
+                  "name": "Apache Oozie Get System Configuration",
+                  "id": "90881646-7796-42e6-a491-88be7c827acd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/admin/configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "admin",
+                        "configuration"
+                      ]
+                    },
+                    "description": "Returns the Oozie system configuration as key-value pairs."
+                  },
+                  "response": [
+                    {
+                      "id": "d9d5d8ae-9b7b-43f2-9ccb-2c52df4018df",
+                      "name": "Oozie system configuration properties.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "configuration"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sint8_\": \"<string>\",\n  \"do_b\": \"<string>\",\n  \"enim_58b\": \"<string>\",\n  \"non_e\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-d9d5d8ae-9b7b-43f2-9ccb-2c52df4018df"
+                    },
+                    {
+                      "id": "aded0a6f-bacb-42c2-bedd-c16522c84431",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "configuration"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-aded0a6f-bacb-42c2-bedd-c16522c84431"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-90881646-7796-42e6-a491-88be7c827acd"
+                }
+              ],
+              "id": "87ef856f-7c9e-4043-a8c5-e1e5db3aab7f",
+              "createdAt": "2026-10-22T01:18:48.000Z",
+              "updatedAt": "2026-10-22T01:18:48.000Z",
+              "uid": "35240-87ef856f-7c9e-4043-a8c5-e1e5db3aab7f"
+            },
+            {
+              "name": "build-version",
+              "item": [
+                {
+                  "name": "Apache Oozie Get Build Version",
+                  "id": "ae67321c-351f-43ed-a33c-4ffe0cef29bd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/admin/build-version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "admin",
+                        "build-version"
+                      ]
+                    },
+                    "description": "Returns the Oozie server build version information."
+                  },
+                  "response": [
+                    {
+                      "id": "8d16339e-b148-4340-a107-205e2529bb7a",
+                      "name": "Build version information.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/build-version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "build-version"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"buildVersion\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-8d16339e-b148-4340-a107-205e2529bb7a"
+                    },
+                    {
+                      "id": "f4b0e3b0-0cde-4988-8e3d-fbee2120e4bb",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/admin/build-version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "admin",
+                            "build-version"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-f4b0e3b0-0cde-4988-8e3d-fbee2120e4bb"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-ae67321c-351f-43ed-a33c-4ffe0cef29bd"
+                }
+              ],
+              "id": "0a558aaa-3583-4803-974d-2ef37614712f",
+              "createdAt": "2026-10-22T01:18:48.000Z",
+              "updatedAt": "2026-10-22T01:18:48.000Z",
+              "uid": "35240-0a558aaa-3583-4803-974d-2ef37614712f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "88a9a7cc-8c21-44c5-b02f-3c2d291de6c3",
-          "name": "Apache Oozie Get OS Environment Variables",
-          "request": {
-            "name": "Apache Oozie Get OS Environment Variables",
-            "description": {
-              "content": "Returns the operating system environment variables of the Oozie server.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "admin",
-                "os-env"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6d5398d3-35bb-4d04-837c-51d429beeaa6",
-              "name": "OS environment variables as key-value pairs.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "os-env"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"JAVA_HOME\": \"/usr/lib/jvm/java-8-openjdk\",\n  \"HADOOP_HOME\": \"/opt/hadoop\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c547eed1-86a4-4029-bce6-8934bcef24f1",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "os-env"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7563af30-57b3-426b-b933-ecf0088f967e",
-          "name": "Apache Oozie Get System Configuration",
-          "request": {
-            "name": "Apache Oozie Get System Configuration",
-            "description": {
-              "content": "Returns the Oozie system configuration as key-value pairs.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "admin",
-                "configuration"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "749bd01b-911b-4847-89f6-dfdf3cd37b9f",
-              "name": "Oozie system configuration properties.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "configuration"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "34b370c6-c713-427c-8127-b85502742ca7",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "configuration"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "53a12ccb-d41d-48d1-a985-e8e4013eae1d",
-          "name": "Apache Oozie Get Build Version",
-          "request": {
-            "name": "Apache Oozie Get Build Version",
-            "description": {
-              "content": "Returns the Oozie server build version information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "admin",
-                "build-version"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fb28bdf3-b412-4c40-811d-1c75e45e531a",
-              "name": "Build version information.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "build-version"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"buildVersion\": \"5.2.1\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "56dd3826-ca39-4f3d-b77a-75c9a8649141",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "admin",
-                    "build-version"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2d3ad8cc-d8f8-49c4-b65d-0a0dac9bc641",
-          "name": "Apache Oozie Get System Metrics",
-          "request": {
-            "name": "Apache Oozie Get System Metrics",
-            "description": {
-              "content": "Returns current Oozie system performance metrics.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "admin",
-                "metrics"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "469535ad-dca7-4d5b-a7fe-7af1e9738041",
-              "name": "System performance metrics.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "admin",
-                    "metrics"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"gauges\": {\n    \"key_0\": false,\n    \"key_1\": 1480.552839283721,\n    \"key_2\": \"string\"\n  },\n  \"counters\": {\n    \"key_0\": false,\n    \"key_1\": 1560.0118374317528\n  },\n  \"timers\": {\n    \"key_0\": 9789.423582214959,\n    \"key_1\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "97d19f65-0dbb-40a7-8a03-0cbafee5d692",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "admin",
-                    "metrics"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3afd19df-8103-4da9-a82c-541fca69232d",
-          "name": "Apache Oozie List Available Servers",
-          "request": {
-            "name": "Apache Oozie List Available Servers",
-            "description": {
-              "content": "Returns the list of available Oozie servers in a high availability setup.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "admin",
-                "available-oozie-servers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "cee28ed1-38b6-49af-af21-cb1283bf1367",
-              "name": "List of available Oozie servers with their URLs.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "admin",
-                    "available-oozie-servers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5ecdfcfe-a95e-44fb-a174-0d7e4111ffbb",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "admin",
-                    "available-oozie-servers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"httpStatusCode\": 400,\n  \"oozieErrorCode\": \"E0401\",\n  \"message\": \"Command exception\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "60612fe7-980d-4b2f-870e-3ea0d08a3ac0",
+          "createdAt": "2026-10-22T01:18:48.000Z",
+          "updatedAt": "2026-10-22T01:18:48.000Z",
+          "uid": "35240-60612fe7-980d-4b2f-870e-3ea0d08a3ac0"
         }
       ],
-      "event": []
+      "id": "8dc4a601-a629-4e09-a808-24578cc9737b",
+      "createdAt": "2026-10-22T01:18:48.000Z",
+      "updatedAt": "2026-10-22T01:18:48.000Z",
+      "uid": "35240-8dc4a601-a629-4e09-a808-24578cc9737b"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "admin",
+          "item": [
+            {
+              "name": "metrics",
+              "item": [
+                {
+                  "name": "Apache Oozie Get System Metrics",
+                  "id": "771bdf6c-07d1-4976-b9cb-f3ec23724f6f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/admin/metrics",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "admin",
+                        "metrics"
+                      ]
+                    },
+                    "description": "Returns current Oozie system performance metrics."
+                  },
+                  "response": [
+                    {
+                      "id": "40f1bf09-d2fe-41c3-a418-4cc6b960de87",
+                      "name": "System performance metrics.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/admin/metrics",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "admin",
+                            "metrics"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"gauges\": {\n    \"Ut_46\": -78602685.04133594,\n    \"incididuntd02\": 55124326.98031953\n  },\n  \"counters\": {\n    \"consectetur__a\": 98682343\n  },\n  \"timers\": {\n    \"consequat_54d\": -51317373.378921084\n  }\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-40f1bf09-d2fe-41c3-a418-4cc6b960de87"
+                    },
+                    {
+                      "id": "55896472-3ddf-4f9d-93ee-9b225fd882a2",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/admin/metrics",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "admin",
+                            "metrics"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-55896472-3ddf-4f9d-93ee-9b225fd882a2"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-771bdf6c-07d1-4976-b9cb-f3ec23724f6f"
+                }
+              ],
+              "id": "0950151d-0132-47e1-bf43-17a5e3965bd4",
+              "createdAt": "2026-10-22T01:18:48.000Z",
+              "updatedAt": "2026-10-22T01:18:48.000Z",
+              "uid": "35240-0950151d-0132-47e1-bf43-17a5e3965bd4"
+            },
+            {
+              "name": "available-oozie-servers",
+              "item": [
+                {
+                  "name": "Apache Oozie List Available Servers",
+                  "id": "eeeda7d8-0835-4385-8bd3-f4a204a80a16",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/admin/available-oozie-servers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "admin",
+                        "available-oozie-servers"
+                      ]
+                    },
+                    "description": "Returns the list of available Oozie servers in a high availability setup."
+                  },
+                  "response": [
+                    {
+                      "id": "d800c8de-dc59-4b25-9e83-a3298cdbd1f4",
+                      "name": "List of available Oozie servers with their URLs.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/admin/available-oozie-servers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "admin",
+                            "available-oozie-servers"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sint8_\": \"<string>\",\n  \"do_b\": \"<string>\",\n  \"enim_58b\": \"<string>\",\n  \"non_e\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-d800c8de-dc59-4b25-9e83-a3298cdbd1f4"
+                    },
+                    {
+                      "id": "8818b695-6daa-414e-a8b8-0a823cf34402",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/admin/available-oozie-servers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "admin",
+                            "available-oozie-servers"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"httpStatusCode\": \"<integer>\",\n  \"oozieErrorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:18:48.000Z",
+                      "updatedAt": "2026-10-22T01:18:48.000Z",
+                      "uid": "35240-8818b695-6daa-414e-a8b8-0a823cf34402"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:18:48.000Z",
+                  "updatedAt": "2026-10-22T01:18:48.000Z",
+                  "uid": "35240-eeeda7d8-0835-4385-8bd3-f4a204a80a16"
+                }
+              ],
+              "id": "ac9bf736-78c4-47f4-9c4f-6fda569a11a2",
+              "createdAt": "2026-10-22T01:18:48.000Z",
+              "updatedAt": "2026-10-22T01:18:48.000Z",
+              "uid": "35240-ac9bf736-78c4-47f4-9c4f-6fda569a11a2"
+            }
+          ],
+          "id": "a5e07c21-25cb-47bd-916e-98a126f94354",
+          "createdAt": "2026-10-22T01:18:48.000Z",
+          "updatedAt": "2026-10-22T01:18:48.000Z",
+          "uid": "35240-a5e07c21-25cb-47bd-916e-98a126f94354"
+        }
+      ],
+      "id": "19b20686-e7f0-463b-bfd1-48dbe25efa57",
+      "createdAt": "2026-10-22T01:18:48.000Z",
+      "updatedAt": "2026-10-22T01:18:48.000Z",
+      "uid": "35240-19b20686-e7f0-463b-bfd1-48dbe25efa57"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "http://localhost:11000/oozie",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "http://localhost:11000/oozie"
     }
-  ],
-  "info": {
-    "_postman_id": "3628c2bf-57f5-4b01-b0e8-a5a0e845c9fe",
-    "name": "Apache Oozie REST Admin API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. The API supports job lifecycle management (submit, start, suspend, resume, kill, rerun), status monitoring, log retrieval, DAG visualization, and system administration. Authentication is handled by the Hadoop security layer (Kerberos or SPNEGO when security is enabled).\n\nContact Support:\n Name: Apache Oozie",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

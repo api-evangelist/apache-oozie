@@ -1,26 +1,19 @@
 {
   "provider": "apache-oozie",
   "sources": [
-    "_original/apache-oozie-openapi.yaml"
+    "_original/apache-oozie-openapi.json"
   ],
   "outputs": [
-    "apache-oozie-admin-api-openapi.yml",
-    "apache-oozie-job-api-openapi.yml",
-    "apache-oozie-jobs-api-openapi.yml",
-    "apache-oozie-versions-api-openapi.yml"
+    "apache-oozie-queues-api-openapi.yml",
+    "apache-oozie-status-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "apache-oozie-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "apache-oozie-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+2 apis, 2 total)"
   ],
-  "skipped": [
-    "apache-oozie-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-oozie-job-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-oozie-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-oozie-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }
