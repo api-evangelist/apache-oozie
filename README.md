@@ -1,0 +1,224 @@
+# Apache Oozie (apache-oozie)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+Apache Oozie is a workflow scheduler system for managing Apache Hadoop jobs. It enables users to define workflows as directed acyclic graphs (DAGs) of actions including MapReduce, Pig, Hive, Sqoop, and custom Java/shell steps. Coordinator jobs trigger workflows based on time schedules or data availability, while bundle jobs group multiple coordinators. Oozie provides a REST API for job submission, lifecycle management, monitoring, and system administration. Governed by the Apache Software Foundation under the Apache License 2.0, written in Java.
+
+**URL:** [https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apache-oozie/refs/heads/main/apis.yml)
+
+**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+
+## Tags:
+
+ - Workflow, Hadoop, Orchestration, Scheduling, Big Data, Apache, Java, Open Source
+
+## Timestamps
+
+- **Created:** 2026-03-16
+- **Modified:** 2026-04-19
+
+## APIs
+
+### Apache Oozie REST API
+The Oozie Web Services API provides REST endpoints for submitting, managing, and monitoring workflow, coordinator, and bundle jobs on Apache Hadoop. Supports full job lifecycle management (submit, start, suspend, resume, kill, rerun), log and status retrieval, DAG visualization, SLA management, and system administration. Available at /oozie/v1 and /oozie/v2 with JSON responses.
+
+**Human URL:** [https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html](https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html)
+
+#### Tags:
+
+ - REST, Hadoop, Workflow Management, Job Scheduling
+
+#### Properties
+
+- [Documentation](https://oozie.apache.org/docs/5.2.1/WebServicesAPI.html)
+- [OpenAPI](openapi/apache-oozie-openapi.yaml)
+- [JSONSchema - Job Info Schema](json-schema/apache-oozie-job-info-schema.json)
+- [JSONSchema - Job List Schema](json-schema/apache-oozie-job-list-schema.json)
+- [JSONSchema - Job ID Schema](json-schema/apache-oozie-job-id-schema.json)
+- [JSONSchema - System Status Schema](json-schema/apache-oozie-system-status-schema.json)
+
+## Common Properties
+
+- [GitHub Repository](https://github.com/apache/oozie)
+- [GitHub Organization](https://github.com/apache)
+- [Documentation](https://oozie.apache.org/docs/5.2.1/)
+- [Getting Started](https://oozie.apache.org/docs/5.2.1/DG_QuickStart.html)
+- [Tutorials](https://oozie.apache.org/docs/5.2.1/DG_Examples.html)
+- [Release Notes](https://github.com/apache/oozie/blob/master/release-log.txt)
+- [Terms of Service](https://www.apache.org/licenses/LICENSE-2.0)
+- [Support](https://oozie.apache.org/mailing-lists.html)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/oozie)
+- [Spectral Rules](rules/apache-oozie-spectral-rules.yml)
+- [Naftiko Capability](capabilities/apache-oozie-workflow-orchestration.yaml)
+- [Vocabulary](vocabulary/apache-oozie-vocabulary.yaml)
+- [JSON-LD Context](json-ld/apache-oozie-context.jsonld)
+
+## Features
+
+| Name | Description |
+|------|-------------|
+| Directed Acyclic Graph Workflows | Define complex data processing pipelines as DAGs of actions executed on Apache Hadoop. |
+| Coordinator Jobs | Schedule recurring workflows triggered by time intervals or data availability conditions in HDFS. |
+| Bundle Jobs | Group multiple coordinator jobs into a single bundle for coordinated lifecycle management. |
+| REST API Management | Full REST API for job submission, lifecycle control, monitoring, and system administration. |
+| Native Hadoop Action Types | Built-in support for MapReduce, Pig, Hive, Sqoop, Distcp, and custom Java/shell actions. |
+| SLA Management | Define and monitor service level agreements on workflow and coordinator actions with alert capabilities. |
+| DAG Visualization | Generate PNG, SVG, or DOT graph visualizations of workflow DAGs for debugging and documentation. |
+| Log Retrieval | Retrieve execution logs, error logs, and audit trails for jobs via REST API with filtering support. |
+| High Availability | Built-in HA support with multiple Oozie server instances and distributed state management. |
+| Shared Library Support | Manage shared Hadoop libraries across workflows for consistent classpath management. |
+
+## Use Cases
+
+| Name | Description |
+|------|-------------|
+| ETL Pipeline Orchestration | Orchestrate multi-step ETL pipelines combining Hive queries, MapReduce jobs, and data transfers on Hadoop. |
+| Scheduled Data Processing | Run recurring Hadoop batch jobs on time-based schedules using coordinator jobs. |
+| Data-Triggered Workflows | Trigger workflows automatically when new data arrives in HDFS using coordinator data-in conditions. |
+| Machine Learning Pipeline Automation | Automate ML model training and evaluation pipelines on Hadoop with dependency chaining. |
+| Data Migration and Archival | Orchestrate large-scale data migration, compaction, and archival workflows across Hadoop clusters. |
+| Multi-Cluster Coordination | Coordinate workflows that span multiple Hadoop clusters using Distcp and remote actions. |
+
+## Integrations
+
+| Name | Description |
+|------|-------------|
+| Apache Hadoop | Core integration with HDFS for data storage and YARN for resource management. |
+| Apache Hive | Native Hive action type for executing HiveQL queries as workflow steps. |
+| Apache Pig | Native Pig action type for data transformation scripts in workflow pipelines. |
+| Apache Sqoop | Native Sqoop action type for importing and exporting data between Hadoop and RDBMS. |
+| Apache Spark | Spark action type for running Spark jobs within Oozie workflows. |
+| Apache MapReduce | Native MapReduce action type as the foundational Hadoop computation framework. |
+
+## Artifacts
+
+Machine-readable API specifications organized by format.
+
+### OpenAPI
+
+- [Apache Oozie REST API](openapi/apache-oozie-openapi.yaml)
+
+### JSON Schema
+
+- [System Status](json-schema/apache-oozie-system-status-schema.json)
+- [Build Version](json-schema/apache-oozie-build-version-schema.json)
+- [System Metrics](json-schema/apache-oozie-system-metrics-schema.json)
+- [Job ID](json-schema/apache-oozie-job-id-schema.json)
+- [Job Action](json-schema/apache-oozie-job-action-schema.json)
+- [Job Info](json-schema/apache-oozie-job-info-schema.json)
+- [Job List](json-schema/apache-oozie-job-list-schema.json)
+- [Validation Result](json-schema/apache-oozie-validation-result-schema.json)
+
+### JSON Structure
+
+- [System Status](json-structure/apache-oozie-system-status-structure.json)
+- [Build Version](json-structure/apache-oozie-build-version-structure.json)
+- [System Metrics](json-structure/apache-oozie-system-metrics-structure.json)
+- [Job ID](json-structure/apache-oozie-job-id-structure.json)
+- [Job Action](json-structure/apache-oozie-job-action-structure.json)
+- [Job Info](json-structure/apache-oozie-job-info-structure.json)
+- [Job List](json-structure/apache-oozie-job-list-structure.json)
+- [Validation Result](json-structure/apache-oozie-validation-result-structure.json)
+
+### JSON-LD
+
+- [Apache Oozie Context](json-ld/apache-oozie-context.jsonld)
+
+### Examples
+
+- [System Status](examples/apache-oozie-system-status-example.json)
+- [Build Version](examples/apache-oozie-build-version-example.json)
+- [Job ID](examples/apache-oozie-job-id-example.json)
+- [Job Action](examples/apache-oozie-job-action-example.json)
+- [Job Info](examples/apache-oozie-job-info-example.json)
+- [Job List](examples/apache-oozie-job-list-example.json)
+
+## Capabilities
+
+Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
+
+### Shared Per-API Definitions
+
+- [Apache Oozie REST API](capabilities/shared/apache-oozie.yaml) — 8 operations for admin, job submission, bulk management, and job lifecycle control
+
+### Workflow Capabilities
+
+| Workflow | APIs Combined | Tools | Persona |
+|----------|--------------|-------|---------|
+| [Apache Oozie Workflow Orchestration](capabilities/apache-oozie-workflow-orchestration.yaml) | Apache Oozie REST API | 12 | Data Engineer, Hadoop Pipeline Operator |
+
+## Vocabulary
+
+- [Apache Oozie Vocabulary](vocabulary/apache-oozie-vocabulary.yaml) — Unified taxonomy mapping 4 resources, 14 actions, 1 workflow, and 2 personas across operational (OpenAPI) and capability (Naftiko) dimensions
+
+## Rules
+
+- [Apache Oozie Spectral Rules](rules/apache-oozie-spectral-rules.yml) — 28 rules across 9 categories enforcing Apache Oozie REST API conventions
+
+## Maintainers
+
+**FN:** Kin Lane
+
+**Email:** info@apievangelist.com
